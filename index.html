@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alex Chen — Portfolio</title>
+  <title>Gustavo Lujan Centeno — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
   <style>
@@ -17,7 +17,6 @@
       --hint: #a0a09c;
       --border: rgba(0,0,0,0.10);
       --border-strong: rgba(0,0,0,0.20);
-      --accent: #1a1a18;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -29,7 +28,6 @@
         --hint: #5e5e5b;
         --border: rgba(255,255,255,0.10);
         --border-strong: rgba(255,255,255,0.20);
-        --accent: #efefec;
       }
     }
 
@@ -42,18 +40,11 @@
       font-weight: 300;
     }
 
-    .page {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 4rem 2rem 6rem;
-    }
+    .page { max-width: 680px; margin: 0 auto; padding: 4rem 2rem 6rem; }
 
-    /* ── Typography ── */
     h1 { font-size: 2rem; font-weight: 300; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 0.5rem; }
     h1 strong { font-weight: 500; }
-    .mono { font-family: 'DM Mono', monospace; }
 
-    /* ── Section ── */
     .section { margin-bottom: 3rem; }
     .section-label {
       font-family: 'DM Mono', monospace;
@@ -68,11 +59,9 @@
     }
     .section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
 
-    /* ── Hero ── */
     .subtitle { font-size: 15px; color: var(--muted); margin-bottom: 1.5rem; font-weight: 300; }
     .hero-links { display: flex; gap: 10px; flex-wrap: wrap; }
 
-    /* ── Buttons ── */
     .btn {
       font-family: 'DM Mono', monospace;
       font-size: 12px;
@@ -83,17 +72,15 @@
       background: transparent;
       text-decoration: none;
       cursor: pointer;
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      transition: background 0.15s, color 0.15s;
       display: inline-block;
     }
-    .btn:hover { background: var(--surface); color: var(--text); border-color: var(--border-strong); }
+    .btn:hover { background: var(--surface); color: var(--text); }
     .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
     .btn.primary:hover { opacity: 0.82; }
 
-    /* ── About ── */
     .about-text { font-size: 15px; line-height: 1.85; color: var(--muted); max-width: 560px; }
 
-    /* ── Projects ── */
     .projects { display: flex; flex-direction: column; gap: 12px; }
     .card {
       border: 0.5px solid var(--border);
@@ -103,9 +90,7 @@
       transition: border-color 0.15s;
     }
     .card:hover { border-color: var(--border-strong); }
-    .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
-    .card-name { font-size: 15px; font-weight: 500; }
-    .card-year { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); }
+    .card-name { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
     .card-desc { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 10px; }
     .tags { display: flex; gap: 6px; flex-wrap: wrap; }
     .tag {
@@ -117,14 +102,12 @@
       color: var(--muted);
     }
 
-    /* ── Skills ── */
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
     .skill-group { padding: 1rem; border: 0.5px solid var(--border); border-radius: 8px; }
     .skill-group-title { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); margin-bottom: 8px; }
     .skill-list { display: flex; flex-direction: column; gap: 4px; }
     .skill-item { font-size: 13px; color: var(--muted); }
 
-    /* ── Experience ── */
     .exp-list { display: flex; flex-direction: column; gap: 1.25rem; }
     .exp-item { display: flex; gap: 1rem; }
     .exp-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--hint); margin-top: 6px; flex-shrink: 0; }
@@ -132,10 +115,7 @@
     .exp-place { font-size: 13px; color: var(--muted); }
     .exp-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); margin-top: 2px; }
 
-    /* ── Contact ── */
     .contact-row { display: flex; gap: 10px; flex-wrap: wrap; }
-
-    /* ── Footer ── */
     .footer { margin-top: 5rem; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); }
   </style>
 </head>
@@ -143,14 +123,12 @@
   <div class="page">
 
     <!-- HERO -->
-    <div class="section" style="margin-bottom:3rem">
-      <h1>Hi, I'm <strong>Alex Chen</strong></h1>
-      <p class="subtitle">Computer Science student @ UMass Lowell &nbsp;·&nbsp; Backend &amp; systems</p>
+    <div class="section">
+      <h1>Hi, I'm <strong>Gustavo Lujan Centeno</strong></h1>
+      <p class="subtitle">Computer Engineering (4+1 BS/MS) @ UMass Lowell &nbsp;·&nbsp; Embedded Systems &amp; Hardware</p>
       <div class="hero-links">
-        <a class="btn primary" href="resume.pdf" target="_blank">Download résumé</a>
-        <a class="btn" href="https://github.com/yourusername" target="_blank">GitHub</a>
-        <a class="btn" href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
-        <a class="btn" href="mailto:you@email.com">Email me</a>
+        <a class="btn primary" href="mailto:glujancenteno@gmail.com">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/gustavo-lujan-centeno-701136247/" target="_blank">LinkedIn</a>
       </div>
     </div>
 
@@ -158,9 +136,7 @@
     <div class="section">
       <div class="section-label">About</div>
       <p class="about-text">
-        I'm a junior studying CS with a focus on distributed systems and backend engineering.
-        I enjoy building tools that make complex things simple. Currently looking for summer
-        internships in software engineering.
+        I'm a Senior Computer Engineering student in the 4+1 BS/MS program at UMass Lowell, focusing on embedded systems, hardware development, and test engineering. I have experience with microcontrollers (AVR/Arduino/Pico), FPGA design using VHDL, circuit analysis, and building complete analog-to-digital systems. I enjoy working with real hardware, debugging circuits, and understanding how systems behave at the low level. Currently seeking internships in embedded systems, hardware, or test engineering.
       </p>
     </div>
 
@@ -170,42 +146,35 @@
       <div class="projects">
 
         <div class="card">
-          <div class="card-header">
-            <span class="card-name">Distributed Key-Value Store</span>
-            <span class="card-year">2024</span>
-          </div>
-          <p class="card-desc">Built a fault-tolerant KV store using the Raft consensus algorithm. Supports linearizable reads/writes with leader election and log replication.</p>
+          <div class="card-name">Fabrication Machine for Microelectrode Arrays</div>
+          <p class="card-desc">Contributing to the design of an automated system for microelectrode array fabrication as part of a multidisciplinary Capstone team. Focused on hardware–software integration, motion control, and testing of embedded subsystems including sensors, actuators, and precision alignment components.</p>
           <div class="tags">
-            <span class="tag">Go</span>
-            <span class="tag">Raft</span>
-            <span class="tag">gRPC</span>
+            <span class="tag">Embedded C</span>
+            <span class="tag">Motion Control</span>
+            <span class="tag">Hardware Debugging</span>
+            <span class="tag">Capstone</span>
           </div>
         </div>
 
         <div class="card">
-          <div class="card-header">
-            <span class="card-name">Campus Event App</span>
-            <span class="card-year">2024</span>
-          </div>
-          <p class="card-desc">Full-stack app for discovering and RSVPing to campus events. Built with a React frontend and Node.js REST API; deployed on AWS.</p>
+          <div class="card-name">Cooperative Real-Time Scheduler</div>
+          <p class="card-desc">Implemented a cooperative real-time task scheduler in C/C++ on an AVR microcontroller. Designed scheduling logic, timing counters, task switching behavior, and CPU-load measurement. Verified timing accuracy with multiple concurrent embedded tasks running on hardware.</p>
           <div class="tags">
-            <span class="tag">React</span>
-            <span class="tag">Node.js</span>
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">AWS</span>
+            <span class="tag">C/C++</span>
+            <span class="tag">AVR</span>
+            <span class="tag">Real-Time Systems</span>
+            <span class="tag">Microcontroller</span>
           </div>
         </div>
 
         <div class="card">
-          <div class="card-header">
-            <span class="card-name">CLI Budget Tracker</span>
-            <span class="card-year">2023</span>
-          </div>
-          <p class="card-desc">Command-line tool for tracking spending with CSV export and category summaries. Installed by 40+ students on campus.</p>
+          <div class="card-name">Wind-Activated Visual Display System</div>
+          <p class="card-desc">Designed and built a wind-activated LED display using analog circuitry and op-amp configurations. Converted airflow intensity to voltage levels via LM358 op-amps acting as comparators, calibrated thresholds to trigger LEDs at different wind levels, and verified behavior using Analog Discovery.</p>
           <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Click</span>
-            <span class="tag">SQLite</span>
+            <span class="tag">Analog Circuits</span>
+            <span class="tag">Op-Amps</span>
+            <span class="tag">LM358</span>
+            <span class="tag">Signal Conditioning</span>
           </div>
         </div>
 
@@ -219,53 +188,43 @@
         <div class="skill-group">
           <div class="skill-group-title">Languages</div>
           <div class="skill-list">
+            <span class="skill-item">C / C++</span>
+            <span class="skill-item">VHDL</span>
             <span class="skill-item">Python</span>
-            <span class="skill-item">Go</span>
-            <span class="skill-item">Java</span>
-            <span class="skill-item">JavaScript</span>
-            <span class="skill-item">C</span>
+            <span class="skill-item">Assembly</span>
           </div>
         </div>
         <div class="skill-group">
-          <div class="skill-group-title">Frameworks</div>
+          <div class="skill-group-title">Hardware</div>
           <div class="skill-list">
-            <span class="skill-item">React</span>
-            <span class="skill-item">Node.js</span>
-            <span class="skill-item">Flask</span>
-            <span class="skill-item">gRPC</span>
+            <span class="skill-item">AVR / Arduino</span>
+            <span class="skill-item">Raspberry Pi Pico</span>
+            <span class="skill-item">FPGA (VHDL)</span>
+            <span class="skill-item">Analog circuits</span>
           </div>
         </div>
         <div class="skill-group">
-          <div class="skill-group-title">Tools &amp; Infra</div>
+          <div class="skill-group-title">Tools</div>
           <div class="skill-list">
+            <span class="skill-item">Analog Discovery</span>
+            <span class="skill-item">Oscilloscope</span>
             <span class="skill-item">Git / GitHub</span>
-            <span class="skill-item">Docker</span>
-            <span class="skill-item">AWS</span>
-            <span class="skill-item">PostgreSQL</span>
-            <span class="skill-item">Linux</span>
+            <span class="skill-item">Multisim</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- EXPERIENCE -->
+    <!-- EDUCATION -->
     <div class="section">
-      <div class="section-label">Experience</div>
+      <div class="section-label">Education</div>
       <div class="exp-list">
         <div class="exp-item">
           <div class="exp-dot"></div>
           <div>
-            <div class="exp-role">Software Engineering Intern</div>
-            <div class="exp-place">Acme Corp &nbsp;·&nbsp; Remote</div>
-            <div class="exp-date">May 2024 – Aug 2024</div>
-          </div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-dot"></div>
-          <div>
-            <div class="exp-role">CS Teaching Assistant</div>
-            <div class="exp-place">UMass Lowell &nbsp;·&nbsp; Operating Systems</div>
-            <div class="exp-date">Jan 2024 – present</div>
+            <div class="exp-role">BS/MS Computer Engineering — 4+1 Program</div>
+            <div class="exp-place">University of Massachusetts Lowell</div>
+            <div class="exp-date">Expected 2026</div>
           </div>
         </div>
       </div>
@@ -275,13 +234,12 @@
     <div class="section">
       <div class="section-label">Contact</div>
       <div class="contact-row">
-        <a class="btn" href="mailto:you@email.com">you@email.com</a>
-        <a class="btn" href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
-        <a class="btn" href="https://linkedin.com/in/yourusername" target="_blank">linkedin.com/in/yourusername</a>
+        <a class="btn" href="mailto:glujancenteno@gmail.com">glujancenteno@gmail.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/gustavo-lujan-centeno-701136247/" target="_blank">LinkedIn</a>
       </div>
     </div>
 
-    <div class="footer">Built with HTML &amp; CSS &nbsp;·&nbsp; Hosted on GitHub Pages</div>
+    <div class="footer">Gustavo Lujan Centeno &nbsp;·&nbsp; gustavo160902.github.io</div>
 
   </div>
 </body>
