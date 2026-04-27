@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gustavo Lujan Centeno — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -16,7 +16,7 @@
       --muted: #6b6b68;
       --hint: #a0a09c;
       --border: rgba(0,0,0,0.10);
-      --border-strong: rgba(0,0,0,0.20);
+      --border-strong: rgba(0,0,0,0.22);
     }
 
     @media (prefers-color-scheme: dark) {
@@ -27,7 +27,7 @@
         --muted: #9a9a96;
         --hint: #5e5e5b;
         --border: rgba(255,255,255,0.10);
-        --border-strong: rgba(255,255,255,0.20);
+        --border-strong: rgba(255,255,255,0.22);
       }
     }
 
@@ -40,7 +40,7 @@
       font-weight: 300;
     }
 
-    .page { max-width: 680px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+    .page { max-width: 700px; margin: 0 auto; padding: 4rem 2rem 6rem; }
 
     h1 { font-size: 2rem; font-weight: 300; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 0.5rem; }
     h1 strong { font-weight: 500; }
@@ -79,9 +79,19 @@
     .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
     .btn.primary:hover { opacity: 0.82; }
 
-    .about-text { font-size: 15px; line-height: 1.85; color: var(--muted); max-width: 560px; }
+    .about-text { font-size: 15px; line-height: 1.85; color: var(--muted); max-width: 580px; }
 
-    .projects { display: flex; flex-direction: column; gap: 12px; }
+    /* Year group */
+    .year-group { margin-bottom: 2.5rem; }
+    .year-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--hint);
+      margin-bottom: 10px;
+      padding-left: 2px;
+    }
+    .projects { display: flex; flex-direction: column; gap: 10px; }
+
     .card {
       border: 0.5px solid var(--border);
       border-radius: 12px;
@@ -90,7 +100,19 @@
       transition: border-color 0.15s;
     }
     .card:hover { border-color: var(--border-strong); }
-    .card-name { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+    .card.wip { border-style: dashed; }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; gap: 12px; }
+    .card-name { font-size: 15px; font-weight: 500; }
+    .wip-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      padding: 2px 8px;
+      border: 0.5px solid var(--border-strong);
+      border-radius: 20px;
+      color: var(--hint);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
     .card-desc { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 10px; }
     .tags { display: flex; gap: 6px; flex-wrap: wrap; }
     .tag {
@@ -129,6 +151,7 @@
       <div class="hero-links">
         <a class="btn primary" href="mailto:glujancenteno@gmail.com">Email me</a>
         <a class="btn" href="https://www.linkedin.com/in/gustavo-lujan-centeno-701136247/" target="_blank">LinkedIn</a>
+        <a class="btn" href="https://github.com/Gustavo160902" target="_blank">GitHub</a>
       </div>
     </div>
 
@@ -143,42 +166,126 @@
     <!-- PROJECTS -->
     <div class="section">
       <div class="section-label">Projects</div>
-      <div class="projects">
 
-        <div class="card">
-          <div class="card-name">Fabrication Machine for Microelectrode Arrays</div>
-          <p class="card-desc">Contributing to the design of an automated system for microelectrode array fabrication as part of a multidisciplinary Capstone team. Focused on hardware–software integration, motion control, and testing of embedded subsystems including sensors, actuators, and precision alignment components.</p>
-          <div class="tags">
-            <span class="tag">Embedded C</span>
-            <span class="tag">Motion Control</span>
-            <span class="tag">Hardware Debugging</span>
-            <span class="tag">Capstone</span>
+      <!-- 2024 -->
+      <div class="year-group">
+        <div class="year-label">2024</div>
+        <div class="projects">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-name">Voice Message Recorder</span>
+            </div>
+            <p class="card-desc">Built a standalone voice recorder on Raspberry Pi Pico that captures audio via a microphone, stores it in RAM, and plays it back through an LM386-amplified speaker using PWM output. Button controls and LED indicators handle record, playback, and power status. Written in C using the Pico SDK.</p>
+            <div class="tags">
+              <span class="tag">C</span><span class="tag">Raspberry Pi Pico</span><span class="tag">PWM</span><span class="tag">LM386</span><span class="tag">ADC</span>
+            </div>
           </div>
         </div>
-
-        <div class="card">
-          <div class="card-name">Cooperative Real-Time Scheduler</div>
-          <p class="card-desc">Implemented a cooperative real-time task scheduler in C/C++ on an AVR microcontroller. Designed scheduling logic, timing counters, task switching behavior, and CPU-load measurement. Verified timing accuracy with multiple concurrent embedded tasks running on hardware.</p>
-          <div class="tags">
-            <span class="tag">C/C++</span>
-            <span class="tag">AVR</span>
-            <span class="tag">Real-Time Systems</span>
-            <span class="tag">Microcontroller</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-name">Wind-Activated Visual Display System</div>
-          <p class="card-desc">Designed and built a wind-activated LED display using analog circuitry and op-amp configurations. Converted airflow intensity to voltage levels via LM358 op-amps acting as comparators, calibrated thresholds to trigger LEDs at different wind levels, and verified behavior using Analog Discovery.</p>
-          <div class="tags">
-            <span class="tag">Analog Circuits</span>
-            <span class="tag">Op-Amps</span>
-            <span class="tag">LM358</span>
-            <span class="tag">Signal Conditioning</span>
-          </div>
-        </div>
-
       </div>
+
+      <!-- 2025 -->
+      <div class="year-group">
+        <div class="year-label">2025</div>
+        <div class="projects">
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-name">Wind-Activated Visual Display</span>
+            </div>
+            <p class="card-desc">Designed and built a wind-activated LED display using analog circuitry and op-amp configurations. Converted airflow intensity to voltage levels via LM358 op-amps acting as comparators, calibrated thresholds to trigger LEDs at different wind levels, and verified behavior using Analog Discovery.</p>
+            <div class="tags">
+              <span class="tag">Analog Circuits</span><span class="tag">Op-Amps</span><span class="tag">LM358</span><span class="tag">Signal Conditioning</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-name">Cooperative Real-Time Scheduler</span>
+            </div>
+            <p class="card-desc">Implemented a cooperative real-time task scheduler in C/C++ on an AVR microcontroller. Designed scheduling logic, timing counters, task switching behavior, and CPU-load measurement. Verified timing accuracy with multiple concurrent embedded tasks running on hardware.</p>
+            <div class="tags">
+              <span class="tag">C/C++</span><span class="tag">AVR</span><span class="tag">Real-Time Systems</span><span class="tag">Microcontroller</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-name">Sound-Activated Motor Controller</span>
+            </div>
+            <p class="card-desc">Built a motor control system on Arduino Mega 2560 where microphone input maps to four PWM motor speed levels. An L293D driver controls direction and speed, a pushbutton toggles rotation direction, and an LCD + DS1307 RTC display real-time clock alongside motor status.</p>
+            <div class="tags">
+              <span class="tag">C/C++</span><span class="tag">Arduino Mega</span><span class="tag">L293D</span><span class="tag">PWM</span><span class="tag">RTC</span><span class="tag">LCD</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-name">Real-Time Scheduler on Arduino</span>
+            </div>
+            <p class="card-desc">Implemented and analyzed Round-Robin and Priority scheduling using the TaskScheduler library on Arduino Uno. Measured latency, deadline misses, and CPU usage across three task types (heavy, medium, light). Generated comparative charts to evaluate fairness and responsiveness under load.</p>
+            <div class="tags">
+              <span class="tag">C/C++</span><span class="tag">Arduino Uno</span><span class="tag">TaskScheduler</span><span class="tag">OS Concepts</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-name">System-on-Chip FPGA Display</span>
+            </div>
+            <p class="card-desc">Designed a processor-based SoC system using Platform Designer (Quartus) on a DE1-SoC board. Exported conduit signals to drive seven segment displays via top-level VHDL integration and manual pin assignments. Compiled and programmed the FPGA using a Linux-based bitstream workflow.</p>
+            <div class="tags">
+              <span class="tag">VHDL</span><span class="tag">FPGA</span><span class="tag">DE1-SoC</span><span class="tag">Quartus</span><span class="tag">Platform Designer</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2025–2026 -->
+      <div class="year-group">
+        <div class="year-label">2025 – 2026</div>
+        <div class="projects">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-name">Fabrication Machine for Microelectrode Arrays</span>
+            </div>
+            <p class="card-desc">Contributing to an automated MEA fabrication system as part of a multidisciplinary Capstone team. Focused on hardware–software integration, motion control, and testing of embedded subsystems including sensors, actuators, and precision alignment components. Tools include Python and SolidWorks.</p>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">SolidWorks</span><span class="tag">Embedded C</span><span class="tag">Motion Control</span><span class="tag">Capstone</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2026 -->
+      <div class="year-group">
+        <div class="year-label">2026</div>
+        <div class="projects">
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-name">LoRa Mesh Network Optimization</span>
+            </div>
+            <p class="card-desc">Research project evaluating metaheuristic and swarm intelligence routing algorithms on long-range LoRa mesh networks. Built a Python simulation using NetworkX, SimPy, and NumPy to compare end-to-end latency, energy consumption, and delivery rate against Meshtastic's default flood routing protocol.</p>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">NetworkX</span><span class="tag">SimPy</span><span class="tag">LoRa</span><span class="tag">Meshtastic</span>
+            </div>
+          </div>
+
+          <div class="card wip">
+            <div class="card-header">
+              <span class="card-name">3D Horror Game</span>
+              <span class="wip-badge">in progress</span>
+            </div>
+            <p class="card-desc">Collaborating with a team to build a 3D horror game. Currently in early development — core movement, basic scene layout, and story foundation are underway.</p>
+            <div class="tags">
+              <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">3D</span><span class="tag">Game Dev</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
 
     <!-- SKILLS -->
@@ -191,6 +298,7 @@
             <span class="skill-item">C / C++</span>
             <span class="skill-item">VHDL</span>
             <span class="skill-item">Python</span>
+            <span class="skill-item">C#</span>
             <span class="skill-item">Assembly</span>
           </div>
         </div>
@@ -199,17 +307,19 @@
           <div class="skill-list">
             <span class="skill-item">AVR / Arduino</span>
             <span class="skill-item">Raspberry Pi Pico</span>
-            <span class="skill-item">FPGA (VHDL)</span>
+            <span class="skill-item">FPGA (DE1-SoC)</span>
             <span class="skill-item">Analog circuits</span>
+            <span class="skill-item">Op-amps</span>
           </div>
         </div>
         <div class="skill-group">
           <div class="skill-group-title">Tools</div>
           <div class="skill-list">
+            <span class="skill-item">Quartus / Platform Designer</span>
             <span class="skill-item">Analog Discovery</span>
-            <span class="skill-item">Oscilloscope</span>
+            <span class="skill-item">SolidWorks</span>
+            <span class="skill-item">Unity</span>
             <span class="skill-item">Git / GitHub</span>
-            <span class="skill-item">Multisim</span>
           </div>
         </div>
       </div>
@@ -236,6 +346,7 @@
       <div class="contact-row">
         <a class="btn" href="mailto:glujancenteno@gmail.com">glujancenteno@gmail.com</a>
         <a class="btn" href="https://www.linkedin.com/in/gustavo-lujan-centeno-701136247/" target="_blank">LinkedIn</a>
+        <a class="btn" href="https://github.com/Gustavo160902" target="_blank">GitHub</a>
       </div>
     </div>
 
