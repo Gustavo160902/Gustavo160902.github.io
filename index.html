@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alex Chen — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --surface: #f7f6f3;
+      --text: #1a1a18;
+      --muted: #6b6b68;
+      --hint: #a0a09c;
+      --border: rgba(0,0,0,0.10);
+      --border-strong: rgba(0,0,0,0.20);
+      --accent: #1a1a18;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #141413;
+        --surface: #1e1e1c;
+        --text: #efefec;
+        --muted: #9a9a96;
+        --hint: #5e5e5b;
+        --border: rgba(255,255,255,0.10);
+        --border-strong: rgba(255,255,255,0.20);
+        --accent: #efefec;
+      }
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ── Typography ── */
+    h1 { font-size: 2rem; font-weight: 300; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 0.5rem; }
+    h1 strong { font-weight: 500; }
+    .mono { font-family: 'DM Mono', monospace; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 3rem; }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--hint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+    .section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+
+    /* ── Hero ── */
+    .subtitle { font-size: 15px; color: var(--muted); margin-bottom: 1.5rem; font-weight: 300; }
+    .hero-links { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* ── Buttons ── */
+    .btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      padding: 7px 16px;
+      border: 0.5px solid var(--border-strong);
+      border-radius: 4px;
+      color: var(--muted);
+      background: transparent;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      display: inline-block;
+    }
+    .btn:hover { background: var(--surface); color: var(--text); border-color: var(--border-strong); }
+    .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+    .btn.primary:hover { opacity: 0.82; }
+
+    /* ── About ── */
+    .about-text { font-size: 15px; line-height: 1.85; color: var(--muted); max-width: 560px; }
+
+    /* ── Projects ── */
+    .projects { display: flex; flex-direction: column; gap: 12px; }
+    .card {
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      background: var(--bg);
+      transition: border-color 0.15s;
+    }
+    .card:hover { border-color: var(--border-strong); }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+    .card-name { font-size: 15px; font-weight: 500; }
+    .card-year { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); }
+    .card-desc { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 10px; }
+    .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      padding: 3px 8px;
+      border: 0.5px solid var(--border);
+      border-radius: 4px;
+      color: var(--muted);
+    }
+
+    /* ── Skills ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+    .skill-group { padding: 1rem; border: 0.5px solid var(--border); border-radius: 8px; }
+    .skill-group-title { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); margin-bottom: 8px; }
+    .skill-list { display: flex; flex-direction: column; gap: 4px; }
+    .skill-item { font-size: 13px; color: var(--muted); }
+
+    /* ── Experience ── */
+    .exp-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .exp-item { display: flex; gap: 1rem; }
+    .exp-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--hint); margin-top: 6px; flex-shrink: 0; }
+    .exp-role { font-size: 14px; font-weight: 500; margin-bottom: 1px; }
+    .exp-place { font-size: 13px; color: var(--muted); }
+    .exp-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); margin-top: 2px; }
+
+    /* ── Contact ── */
+    .contact-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* ── Footer ── */
+    .footer { margin-top: 5rem; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HERO -->
+    <div class="section" style="margin-bottom:3rem">
+      <h1>Hi, I'm <strong>Alex Chen</strong></h1>
+      <p class="subtitle">Computer Science student @ UMass Lowell &nbsp;·&nbsp; Backend &amp; systems</p>
+      <div class="hero-links">
+        <a class="btn primary" href="resume.pdf" target="_blank">Download résumé</a>
+        <a class="btn" href="https://github.com/yourusername" target="_blank">GitHub</a>
+        <a class="btn" href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+        <a class="btn" href="mailto:you@email.com">Email me</a>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+      <div class="section-label">About</div>
+      <p class="about-text">
+        I'm a junior studying CS with a focus on distributed systems and backend engineering.
+        I enjoy building tools that make complex things simple. Currently looking for summer
+        internships in software engineering.
+      </p>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="section">
+      <div class="section-label">Projects</div>
+      <div class="projects">
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-name">Distributed Key-Value Store</span>
+            <span class="card-year">2024</span>
+          </div>
+          <p class="card-desc">Built a fault-tolerant KV store using the Raft consensus algorithm. Supports linearizable reads/writes with leader election and log replication.</p>
+          <div class="tags">
+            <span class="tag">Go</span>
+            <span class="tag">Raft</span>
+            <span class="tag">gRPC</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-name">Campus Event App</span>
+            <span class="card-year">2024</span>
+          </div>
+          <p class="card-desc">Full-stack app for discovering and RSVPing to campus events. Built with a React frontend and Node.js REST API; deployed on AWS.</p>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">AWS</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-name">CLI Budget Tracker</span>
+            <span class="card-year">2023</span>
+          </div>
+          <p class="card-desc">Command-line tool for tracking spending with CSV export and category summaries. Installed by 40+ students on campus.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Click</span>
+            <span class="tag">SQLite</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section">
+      <div class="section-label">Skills</div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-group-title">Languages</div>
+          <div class="skill-list">
+            <span class="skill-item">Python</span>
+            <span class="skill-item">Go</span>
+            <span class="skill-item">Java</span>
+            <span class="skill-item">JavaScript</span>
+            <span class="skill-item">C</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Frameworks</div>
+          <div class="skill-list">
+            <span class="skill-item">React</span>
+            <span class="skill-item">Node.js</span>
+            <span class="skill-item">Flask</span>
+            <span class="skill-item">gRPC</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Tools &amp; Infra</div>
+          <div class="skill-list">
+            <span class="skill-item">Git / GitHub</span>
+            <span class="skill-item">Docker</span>
+            <span class="skill-item">AWS</span>
+            <span class="skill-item">PostgreSQL</span>
+            <span class="skill-item">Linux</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section">
+      <div class="section-label">Experience</div>
+      <div class="exp-list">
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <div>
+            <div class="exp-role">Software Engineering Intern</div>
+            <div class="exp-place">Acme Corp &nbsp;·&nbsp; Remote</div>
+            <div class="exp-date">May 2024 – Aug 2024</div>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <div>
+            <div class="exp-role">CS Teaching Assistant</div>
+            <div class="exp-place">UMass Lowell &nbsp;·&nbsp; Operating Systems</div>
+            <div class="exp-date">Jan 2024 – present</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="section">
+      <div class="section-label">Contact</div>
+      <div class="contact-row">
+        <a class="btn" href="mailto:you@email.com">you@email.com</a>
+        <a class="btn" href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
+        <a class="btn" href="https://linkedin.com/in/yourusername" target="_blank">linkedin.com/in/yourusername</a>
+      </div>
+    </div>
+
+    <div class="footer">Built with HTML &amp; CSS &nbsp;·&nbsp; Hosted on GitHub Pages</div>
+
+  </div>
+</body>
+</html>
