@@ -44,17 +44,10 @@
     .page { max-width: 700px; margin: 0 auto; padding: 5rem 2rem 7rem; }
 
     .hero { margin-bottom: 4rem; }
-    .greeting {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: var(--hint);
-      letter-spacing: 0.08em;
-      margin-bottom: 1rem;
-    }
+    .greeting { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--hint); letter-spacing: 0.08em; margin-bottom: 1rem; }
     h1 { font-size: 2.4rem; font-weight: 300; letter-spacing: -0.8px; line-height: 1.15; margin-bottom: 0.75rem; }
     h1 strong { font-weight: 500; }
     .tagline { font-size: 15px; color: var(--muted); margin-bottom: 2rem; max-width: 480px; line-height: 1.7; }
-
     .hero-links { display: flex; gap: 10px; flex-wrap: wrap; }
 
     .btn {
@@ -76,7 +69,6 @@
     .btn:hover { background: var(--surface); color: var(--text); }
     .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
     .btn.primary:hover { opacity: 0.8; }
-
     .btn-linkedin:hover { background: #e8f0fe; color: #0a66c2; border-color: #0a66c2; }
     .btn-linkedin:hover svg { fill: #0a66c2; }
     .btn-github:hover { background: #f0f0ee; color: #24292e; border-color: #24292e; }
@@ -99,40 +91,21 @@
     .about-text { font-size: 15px; line-height: 1.9; color: var(--muted); max-width: 560px; }
 
     .projects { display: flex; flex-direction: column; gap: 1px; border: 0.5px solid var(--border); border-radius: 14px; overflow: hidden; }
-    .card {
-      padding: 1.4rem 1.6rem;
-      background: var(--bg);
-      border-bottom: 0.5px solid var(--border);
-      transition: background 0.2s;
-      display: block;
-    }
+    .card { padding: 1.4rem 1.6rem; background: var(--bg); border-bottom: 0.5px solid var(--border); transition: background 0.2s; display: block; }
     .card:last-child { border-bottom: none; }
     .card:hover { background: var(--surface); }
     .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; gap: 12px; }
     .card-name { font-size: 15px; font-weight: 500; color: var(--text); }
     .card-year { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); flex-shrink: 0; margin-top: 2px; }
     .card-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
+    .card-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
     .tags { display: flex; gap: 6px; flex-wrap: wrap; }
-    .tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      padding: 2px 7px;
-      border: 0.5px solid var(--border);
-      border-radius: 3px;
-      color: var(--hint);
-    }
+    .tag { font-family: 'DM Mono', monospace; font-size: 10px; padding: 2px 7px; border: 0.5px solid var(--border); border-radius: 3px; color: var(--hint); }
+    .card-link { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: color 0.2s; flex-shrink: 0; }
+    .card-link:hover { color: #24292e; }
+    .card-link svg { width: 11px; height: 11px; }
 
-    .all-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 1rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .all-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 1rem; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .all-link:hover { color: var(--text); }
     .all-link .arrow { transition: transform 0.2s; display: inline-block; }
     .all-link:hover .arrow { transform: translateX(4px); }
@@ -142,6 +115,9 @@
     .skill-group-title { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--hint); margin-bottom: 8px; }
     .skill-list { display: flex; flex-direction: column; gap: 4px; }
     .skill-item { font-size: 13px; color: var(--muted); }
+
+    .lang-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .lang-pill { font-size: 13px; color: var(--muted); padding: 4px 12px; border: 0.5px solid var(--border); border-radius: 20px; }
 
     .timeline { display: flex; flex-direction: column; }
     .timeline-item { display: flex; gap: 1.2rem; padding-bottom: 1.5rem; }
@@ -156,18 +132,7 @@
     .timeline-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
     .certs { display: flex; flex-direction: column; gap: 10px; }
-    .cert-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 0.9rem 1.1rem;
-      border: 0.5px solid var(--border);
-      border-radius: 10px;
-      text-decoration: none;
-      color: inherit;
-      transition: background 0.2s, border-color 0.2s;
-    }
+    .cert-card { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0.9rem 1.1rem; border: 0.5px solid var(--border); border-radius: 10px; text-decoration: none; color: inherit; transition: background 0.2s, border-color 0.2s; }
     .cert-card:hover { background: var(--surface); border-color: var(--border-hover); }
     .cert-left { display: flex; align-items: center; gap: 12px; }
     .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--hint); flex-shrink: 0; }
@@ -193,7 +158,8 @@
     <h1 class="fade d2">I'm <strong>Gustavo</strong><br>Lujan Centeno</h1>
     <p class="tagline fade d3">Computer Engineering (4+1 BS/MS) at UMass Lowell — I build embedded systems, hardware circuits, and the occasional horror game.</p>
     <div class="hero-links fade d4">
-      <a class="btn primary" href="mailto:gustavo_lujancenteno@student.uml.edu">Email me</a>
+      <a class="btn primary" href="resume.pdf" target="_blank">Resume</a>
+      <a class="btn" href="mailto:gustavo_lujancenteno@student.uml.edu">Email</a>
       <a class="btn btn-linkedin" href="https://www.linkedin.com/in/gustavo-lujan-centeno-701136247/" target="_blank">
         <svg viewBox="0 0 24 24" fill="#b0afa9"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         LinkedIn
@@ -213,38 +179,55 @@
   <div class="section fade d5">
     <div class="section-label">Featured projects</div>
     <div class="projects">
+
       <div class="card">
         <div class="card-top">
           <span class="card-name">Fabrication Machine for Microelectrode Arrays</span>
           <span class="card-year">2025–2026</span>
         </div>
-        <p class="card-desc">Capstone project — automated MEA fabrication system with hardware–software integration, motion control, and embedded subsystem testing. Built with a multidisciplinary team.</p>
-        <div class="tags"><span class="tag">Python</span><span class="tag">SolidWorks</span><span class="tag">Embedded C</span><span class="tag">Motion Control</span></div>
+        <p class="card-desc">Capstone project — automated MEA fabrication system built with a multidisciplinary team. Led hardware–software integration and motion control, performing iterative calibration and debugging across multiple embedded subsystems to improve automation reliability.</p>
+        <div class="card-footer">
+          <div class="tags"><span class="tag">Python</span><span class="tag">SolidWorks</span><span class="tag">Embedded C</span><span class="tag">Motion Control</span></div>
+        </div>
       </div>
+
       <div class="card">
         <div class="card-top">
           <span class="card-name">LoRa Mesh Network Optimization</span>
           <span class="card-year">2026</span>
         </div>
-        <p class="card-desc">Research project applying swarm intelligence routing to LoRa mesh networks. Built a Python simulation to compare latency, energy consumption, and delivery rate vs. Meshtastic's default flood routing.</p>
-        <div class="tags"><span class="tag">Python</span><span class="tag">NetworkX</span><span class="tag">SimPy</span><span class="tag">LoRa</span><span class="tag">Meshtastic</span></div>
+        <p class="card-desc">Research project applying swarm intelligence routing to LoRa mesh networks. Built a Python simulation across 5–100 nodes comparing end-to-end latency, energy consumption, and delivery rate against Meshtastic's default flood routing — targeting 20% latency and 15% energy reduction.</p>
+        <div class="card-footer">
+          <div class="tags"><span class="tag">Python</span><span class="tag">NetworkX</span><span class="tag">SimPy</span><span class="tag">LoRa</span></div>
+          <a class="card-link" href="https://github.com/CharlamadaV2/nd_mini_research" target="_blank">
+            <svg viewBox="0 0 24 24" fill="#b0afa9"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            GitHub
+          </a>
+        </div>
       </div>
+
       <div class="card">
         <div class="card-top">
           <span class="card-name">System-on-Chip FPGA Display</span>
           <span class="card-year">2025</span>
         </div>
-        <p class="card-desc">Designed a processor-based SoC on DE1-SoC using Platform Designer. Connected seven segment displays via top-level VHDL integration, pin assignments, and a Linux bitstream programming workflow.</p>
-        <div class="tags"><span class="tag">VHDL</span><span class="tag">FPGA</span><span class="tag">DE1-SoC</span><span class="tag">Quartus</span></div>
+        <p class="card-desc">Designed a processor-based SoC on DE1-SoC using Platform Designer. Connected seven segment displays via top-level VHDL integration, manual pin assignments, and a Linux bitstream programming workflow — compiled with zero errors.</p>
+        <div class="card-footer">
+          <div class="tags"><span class="tag">VHDL</span><span class="tag">FPGA</span><span class="tag">DE1-SoC</span><span class="tag">Quartus</span></div>
+        </div>
       </div>
+
       <div class="card">
         <div class="card-top">
           <span class="card-name">Sound-Activated Motor Controller</span>
           <span class="card-year">2025</span>
         </div>
-        <p class="card-desc">Arduino Mega system that maps microphone input to four PWM motor speed levels via an L293D driver. Includes direction toggle button, real-time clock, and LCD status display.</p>
-        <div class="tags"><span class="tag">C/C++</span><span class="tag">Arduino Mega</span><span class="tag">L293D</span><span class="tag">PWM</span><span class="tag">RTC</span></div>
+        <p class="card-desc">Arduino Mega system mapping microphone input to 4 PWM motor speed levels via an L293D driver. Includes direction toggle button, DS1307 RTC, and LCD showing live time and motor status — all subsystems integrated and tested on hardware.</p>
+        <div class="card-footer">
+          <div class="tags"><span class="tag">C/C++</span><span class="tag">Arduino Mega</span><span class="tag">L293D</span><span class="tag">PWM</span><span class="tag">RTC</span></div>
+        </div>
       </div>
+
     </div>
     <a class="all-link" href="projects.html">See all 9 projects <span class="arrow">→</span></a>
   </div>
@@ -291,6 +274,16 @@
   </div>
 
   <div class="section fade d5">
+    <div class="section-label">Languages</div>
+    <div class="lang-row">
+      <span class="lang-pill">English</span>
+      <span class="lang-pill">Spanish</span>
+      <span class="lang-pill">Turkish</span>
+      <span class="lang-pill">Italian</span>
+    </div>
+  </div>
+
+  <div class="section fade d5">
     <div class="section-label">Experience</div>
     <div class="timeline">
       <div class="timeline-item">
@@ -302,7 +295,7 @@
           <div class="timeline-role">COVID-19 Volunteer</div>
           <div class="timeline-place">Framingham Town &nbsp;·&nbsp; Framingham, MA</div>
           <div class="timeline-date">Jun 2021 – Nov 2021</div>
-          <div class="timeline-desc">Helped set up distribution stations for masks and sanitizers. Coordinated with local health staff to reach vulnerable community groups.</div>
+          <div class="timeline-desc">Set up distribution stations for masks and sanitizers. Coordinated with local health staff to reach vulnerable community groups across 5+ months of weekly events.</div>
         </div>
       </div>
     </div>
@@ -354,7 +347,8 @@
   <div class="section fade d7">
     <div class="section-label">Contact</div>
     <div class="contact-row">
-      <a class="btn primary" href="mailto:gustavo_lujancenteno@student.uml.edu">Email me</a>
+      <a class="btn primary" href="resume.pdf" target="_blank">Resume</a>
+      <a class="btn" href="mailto:gustavo_lujancenteno@student.uml.edu">Email</a>
       <a class="btn btn-linkedin" href="https://www.linkedin.com/in/gustavo-lujan-centeno-701136247/" target="_blank">
         <svg viewBox="0 0 24 24" fill="#b0afa9"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         LinkedIn
