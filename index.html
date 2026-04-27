@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gustavo Lujan Centeno — Portfolio</title>
+  <title>Gustavo Lujan Centeno</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
@@ -11,24 +11,12 @@
 
     :root {
       --bg: #ffffff;
-      --surface: #f7f6f3;
+      --surface: #f8f7f4;
       --text: #1a1a18;
       --muted: #6b6b68;
-      --hint: #a0a09c;
-      --border: rgba(0,0,0,0.10);
-      --border-strong: rgba(0,0,0,0.22);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #141413;
-        --surface: #1e1e1c;
-        --text: #efefec;
-        --muted: #9a9a96;
-        --hint: #5e5e5b;
-        --border: rgba(255,255,255,0.10);
-        --border-strong: rgba(255,255,255,0.22);
-      }
+      --hint: #b0afa9;
+      --border: rgba(0,0,0,0.08);
+      --border-hover: rgba(0,0,0,0.18);
     }
 
     body {
@@ -40,12 +28,61 @@
       font-weight: 300;
     }
 
-    .page { max-width: 700px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade { opacity: 0; animation: fadeUp 0.55s ease forwards; }
+    .d1 { animation-delay: 0.05s; }
+    .d2 { animation-delay: 0.15s; }
+    .d3 { animation-delay: 0.25s; }
+    .d4 { animation-delay: 0.35s; }
+    .d5 { animation-delay: 0.45s; }
+    .d6 { animation-delay: 0.55s; }
+    .d7 { animation-delay: 0.65s; }
 
-    h1 { font-size: 2rem; font-weight: 300; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 0.5rem; }
+    .page { max-width: 700px; margin: 0 auto; padding: 5rem 2rem 7rem; }
+
+    .hero { margin-bottom: 4rem; }
+    .greeting {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--hint);
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+    h1 { font-size: 2.4rem; font-weight: 300; letter-spacing: -0.8px; line-height: 1.15; margin-bottom: 0.75rem; }
     h1 strong { font-weight: 500; }
+    .tagline { font-size: 15px; color: var(--muted); margin-bottom: 2rem; max-width: 480px; line-height: 1.7; }
 
-    .section { margin-bottom: 3rem; }
+    .hero-links { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      padding: 8px 18px;
+      border: 0.5px solid var(--border-hover);
+      border-radius: 4px;
+      color: var(--muted);
+      background: transparent;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .btn svg { width: 13px; height: 13px; flex-shrink: 0; transition: fill 0.2s; }
+    .btn:hover { background: var(--surface); color: var(--text); }
+    .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+    .btn.primary:hover { opacity: 0.8; }
+
+    .btn-linkedin:hover { background: #e8f0fe; color: #0a66c2; border-color: #0a66c2; }
+    .btn-linkedin:hover svg { fill: #0a66c2; }
+    .btn-github:hover { background: #f0f0ee; color: #24292e; border-color: #24292e; }
+    .btn-github:hover svg { fill: #24292e; }
+
+    .section { margin-bottom: 4rem; }
     .section-label {
       font-family: 'DM Mono', monospace;
       font-size: 11px;
@@ -54,304 +91,283 @@
       text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 1.25rem;
+      gap: 12px;
+      margin-bottom: 1.5rem;
     }
     .section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
 
-    .subtitle { font-size: 15px; color: var(--muted); margin-bottom: 1.5rem; font-weight: 300; }
-    .hero-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .about-text { font-size: 15px; line-height: 1.9; color: var(--muted); max-width: 560px; }
 
-    .btn {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      padding: 7px 16px;
-      border: 0.5px solid var(--border-strong);
-      border-radius: 4px;
-      color: var(--muted);
-      background: transparent;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s;
-      display: inline-block;
-    }
-    .btn:hover { background: var(--surface); color: var(--text); }
-    .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
-    .btn.primary:hover { opacity: 0.82; }
-
-    .about-text { font-size: 15px; line-height: 1.85; color: var(--muted); max-width: 580px; }
-
-    /* Year group */
-    .year-group { margin-bottom: 2.5rem; }
-    .year-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: var(--hint);
-      margin-bottom: 10px;
-      padding-left: 2px;
-    }
-    .projects { display: flex; flex-direction: column; gap: 10px; }
-
+    .projects { display: flex; flex-direction: column; gap: 1px; border: 0.5px solid var(--border); border-radius: 14px; overflow: hidden; }
     .card {
-      border: 0.5px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem;
+      padding: 1.4rem 1.6rem;
       background: var(--bg);
-      transition: border-color 0.15s;
+      border-bottom: 0.5px solid var(--border);
+      transition: background 0.2s;
+      display: block;
     }
-    .card:hover { border-color: var(--border-strong); }
-    .card.wip { border-style: dashed; }
-    .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; gap: 12px; }
-    .card-name { font-size: 15px; font-weight: 500; }
-    .wip-badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      padding: 2px 8px;
-      border: 0.5px solid var(--border-strong);
-      border-radius: 20px;
-      color: var(--hint);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .card-desc { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 10px; }
+    .card:last-child { border-bottom: none; }
+    .card:hover { background: var(--surface); }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; gap: 12px; }
+    .card-name { font-size: 15px; font-weight: 500; color: var(--text); }
+    .card-year { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); flex-shrink: 0; margin-top: 2px; }
+    .card-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
     .tags { display: flex; gap: 6px; flex-wrap: wrap; }
     .tag {
       font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      padding: 3px 8px;
+      font-size: 10px;
+      padding: 2px 7px;
       border: 0.5px solid var(--border);
-      border-radius: 4px;
-      color: var(--muted);
+      border-radius: 3px;
+      color: var(--hint);
     }
 
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
-    .skill-group { padding: 1rem; border: 0.5px solid var(--border); border-radius: 8px; }
-    .skill-group-title { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); margin-bottom: 8px; }
+    .all-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .all-link:hover { color: var(--text); }
+    .all-link .arrow { transition: transform 0.2s; display: inline-block; }
+    .all-link:hover .arrow { transform: translateX(4px); }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+    .skill-group { padding: 1rem 1.1rem; border: 0.5px solid var(--border); border-radius: 10px; }
+    .skill-group-title { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--hint); margin-bottom: 8px; }
     .skill-list { display: flex; flex-direction: column; gap: 4px; }
     .skill-item { font-size: 13px; color: var(--muted); }
 
-    .exp-list { display: flex; flex-direction: column; gap: 1.25rem; }
-    .exp-item { display: flex; gap: 1rem; }
-    .exp-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--hint); margin-top: 6px; flex-shrink: 0; }
-    .exp-role { font-size: 14px; font-weight: 500; margin-bottom: 1px; }
-    .exp-place { font-size: 13px; color: var(--muted); }
-    .exp-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); margin-top: 2px; }
+    .timeline { display: flex; flex-direction: column; }
+    .timeline-item { display: flex; gap: 1.2rem; padding-bottom: 1.5rem; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 7px; }
+    .timeline-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--hint); flex-shrink: 0; margin-top: 7px; }
+    .timeline-line { flex: 1; width: 0.5px; background: var(--border); margin-top: 4px; }
+    .timeline-item:last-child .timeline-line { display: none; }
+    .timeline-role { font-size: 14px; font-weight: 500; margin-bottom: 1px; }
+    .timeline-place { font-size: 13px; color: var(--muted); }
+    .timeline-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); margin-top: 2px; margin-bottom: 6px; }
+    .timeline-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    .certs { display: flex; flex-direction: column; gap: 10px; }
+    .cert-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0.9rem 1.1rem;
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .cert-card:hover { background: var(--surface); border-color: var(--border-hover); }
+    .cert-left { display: flex; align-items: center; gap: 12px; }
+    .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--hint); flex-shrink: 0; }
+    .cert-name { font-size: 14px; font-weight: 500; }
+    .cert-org { font-size: 12px; color: var(--muted); margin-top: 1px; }
+    .cert-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); flex-shrink: 0; }
+
+    .edu-item { display: flex; flex-direction: column; gap: 6px; }
+    .edu-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .edu-degree { font-size: 14px; font-weight: 500; }
+    .edu-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); }
+    .edu-school { font-size: 13px; color: var(--muted); }
 
     .contact-row { display: flex; gap: 10px; flex-wrap: wrap; }
     .footer { margin-top: 5rem; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); }
   </style>
 </head>
 <body>
-  <div class="page">
+<div class="page">
 
-    <!-- HERO -->
-    <div class="section">
-      <h1>Hi, I'm <strong>Gustavo Lujan Centeno</strong></h1>
-      <p class="subtitle">Computer Engineering (4+1 BS/MS) @ UMass Lowell &nbsp;·&nbsp; Embedded Systems &amp; Hardware</p>
-      <div class="hero-links">
-        <a class="btn primary" href="mailto:glujancenteno@gmail.com">Email me</a>
-        <a class="btn" href="https://www.linkedin.com/in/gustavo-lujan-centeno-701136247/" target="_blank">LinkedIn</a>
-        <a class="btn" href="https://github.com/Gustavo160902" target="_blank">GitHub</a>
-      </div>
+  <div class="hero">
+    <div class="greeting fade d1">hey, welcome</div>
+    <h1 class="fade d2">I'm <strong>Gustavo</strong><br>Lujan Centeno</h1>
+    <p class="tagline fade d3">Computer Engineering (4+1 BS/MS) at UMass Lowell — I build embedded systems, hardware circuits, and the occasional horror game.</p>
+    <div class="hero-links fade d4">
+      <a class="btn primary" href="mailto:gustavo_lujancenteno@student.uml.edu">Email me</a>
+      <a class="btn btn-linkedin" href="https://www.linkedin.com/in/gustavo-lujan-centeno-701136247/" target="_blank">
+        <svg viewBox="0 0 24 24" fill="#b0afa9"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a class="btn btn-github" href="https://github.com/Gustavo160902" target="_blank">
+        <svg viewBox="0 0 24 24" fill="#b0afa9"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
     </div>
-
-    <!-- ABOUT -->
-    <div class="section">
-      <div class="section-label">About</div>
-      <p class="about-text">
-        I'm a Senior Computer Engineering student in the 4+1 BS/MS program at UMass Lowell, focusing on embedded systems, hardware development, and test engineering. I have experience with microcontrollers (AVR/Arduino/Pico), FPGA design using VHDL, circuit analysis, and building complete analog-to-digital systems. I enjoy working with real hardware, debugging circuits, and understanding how systems behave at the low level. Currently seeking internships in embedded systems, hardware, or test engineering.
-      </p>
-    </div>
-
-    <!-- PROJECTS -->
-    <div class="section">
-      <div class="section-label">Projects</div>
-
-      <!-- 2024 -->
-      <div class="year-group">
-        <div class="year-label">2024</div>
-        <div class="projects">
-          <div class="card">
-            <div class="card-header">
-              <span class="card-name">Voice Message Recorder</span>
-            </div>
-            <p class="card-desc">Built a standalone voice recorder on Raspberry Pi Pico that captures audio via a microphone, stores it in RAM, and plays it back through an LM386-amplified speaker using PWM output. Button controls and LED indicators handle record, playback, and power status. Written in C using the Pico SDK.</p>
-            <div class="tags">
-              <span class="tag">C</span><span class="tag">Raspberry Pi Pico</span><span class="tag">PWM</span><span class="tag">LM386</span><span class="tag">ADC</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2025 -->
-      <div class="year-group">
-        <div class="year-label">2025</div>
-        <div class="projects">
-
-          <div class="card">
-            <div class="card-header">
-              <span class="card-name">Wind-Activated Visual Display</span>
-            </div>
-            <p class="card-desc">Designed and built a wind-activated LED display using analog circuitry and op-amp configurations. Converted airflow intensity to voltage levels via LM358 op-amps acting as comparators, calibrated thresholds to trigger LEDs at different wind levels, and verified behavior using Analog Discovery.</p>
-            <div class="tags">
-              <span class="tag">Analog Circuits</span><span class="tag">Op-Amps</span><span class="tag">LM358</span><span class="tag">Signal Conditioning</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <span class="card-name">Cooperative Real-Time Scheduler</span>
-            </div>
-            <p class="card-desc">Implemented a cooperative real-time task scheduler in C/C++ on an AVR microcontroller. Designed scheduling logic, timing counters, task switching behavior, and CPU-load measurement. Verified timing accuracy with multiple concurrent embedded tasks running on hardware.</p>
-            <div class="tags">
-              <span class="tag">C/C++</span><span class="tag">AVR</span><span class="tag">Real-Time Systems</span><span class="tag">Microcontroller</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <span class="card-name">Sound-Activated Motor Controller</span>
-            </div>
-            <p class="card-desc">Built a motor control system on Arduino Mega 2560 where microphone input maps to four PWM motor speed levels. An L293D driver controls direction and speed, a pushbutton toggles rotation direction, and an LCD + DS1307 RTC display real-time clock alongside motor status.</p>
-            <div class="tags">
-              <span class="tag">C/C++</span><span class="tag">Arduino Mega</span><span class="tag">L293D</span><span class="tag">PWM</span><span class="tag">RTC</span><span class="tag">LCD</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <span class="card-name">Real-Time Scheduler on Arduino</span>
-            </div>
-            <p class="card-desc">Implemented and analyzed Round-Robin and Priority scheduling using the TaskScheduler library on Arduino Uno. Measured latency, deadline misses, and CPU usage across three task types (heavy, medium, light). Generated comparative charts to evaluate fairness and responsiveness under load.</p>
-            <div class="tags">
-              <span class="tag">C/C++</span><span class="tag">Arduino Uno</span><span class="tag">TaskScheduler</span><span class="tag">OS Concepts</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <span class="card-name">System-on-Chip FPGA Display</span>
-            </div>
-            <p class="card-desc">Designed a processor-based SoC system using Platform Designer (Quartus) on a DE1-SoC board. Exported conduit signals to drive seven segment displays via top-level VHDL integration and manual pin assignments. Compiled and programmed the FPGA using a Linux-based bitstream workflow.</p>
-            <div class="tags">
-              <span class="tag">VHDL</span><span class="tag">FPGA</span><span class="tag">DE1-SoC</span><span class="tag">Quartus</span><span class="tag">Platform Designer</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- 2025–2026 -->
-      <div class="year-group">
-        <div class="year-label">2025 – 2026</div>
-        <div class="projects">
-          <div class="card">
-            <div class="card-header">
-              <span class="card-name">Fabrication Machine for Microelectrode Arrays</span>
-            </div>
-            <p class="card-desc">Contributing to an automated MEA fabrication system as part of a multidisciplinary Capstone team. Focused on hardware–software integration, motion control, and testing of embedded subsystems including sensors, actuators, and precision alignment components. Tools include Python and SolidWorks.</p>
-            <div class="tags">
-              <span class="tag">Python</span><span class="tag">SolidWorks</span><span class="tag">Embedded C</span><span class="tag">Motion Control</span><span class="tag">Capstone</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2026 -->
-      <div class="year-group">
-        <div class="year-label">2026</div>
-        <div class="projects">
-
-          <div class="card">
-            <div class="card-header">
-              <span class="card-name">LoRa Mesh Network Optimization</span>
-            </div>
-            <p class="card-desc">Research project evaluating metaheuristic and swarm intelligence routing algorithms on long-range LoRa mesh networks. Built a Python simulation using NetworkX, SimPy, and NumPy to compare end-to-end latency, energy consumption, and delivery rate against Meshtastic's default flood routing protocol.</p>
-            <div class="tags">
-              <span class="tag">Python</span><span class="tag">NetworkX</span><span class="tag">SimPy</span><span class="tag">LoRa</span><span class="tag">Meshtastic</span>
-            </div>
-          </div>
-
-          <div class="card wip">
-            <div class="card-header">
-              <span class="card-name">3D Horror Game</span>
-              <span class="wip-badge">in progress</span>
-            </div>
-            <p class="card-desc">Collaborating with a team to build a 3D horror game. Currently in early development — core movement, basic scene layout, and story foundation are underway.</p>
-            <div class="tags">
-              <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">3D</span><span class="tag">Game Dev</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-
-    <!-- SKILLS -->
-    <div class="section">
-      <div class="section-label">Skills</div>
-      <div class="skills-grid">
-        <div class="skill-group">
-          <div class="skill-group-title">Languages</div>
-          <div class="skill-list">
-            <span class="skill-item">C / C++</span>
-            <span class="skill-item">VHDL</span>
-            <span class="skill-item">Python</span>
-            <span class="skill-item">C#</span>
-            <span class="skill-item">Assembly</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <div class="skill-group-title">Hardware</div>
-          <div class="skill-list">
-            <span class="skill-item">AVR / Arduino</span>
-            <span class="skill-item">Raspberry Pi Pico</span>
-            <span class="skill-item">FPGA (DE1-SoC)</span>
-            <span class="skill-item">Analog circuits</span>
-            <span class="skill-item">Op-amps</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <div class="skill-group-title">Tools</div>
-          <div class="skill-list">
-            <span class="skill-item">Quartus / Platform Designer</span>
-            <span class="skill-item">Analog Discovery</span>
-            <span class="skill-item">SolidWorks</span>
-            <span class="skill-item">Unity</span>
-            <span class="skill-item">Git / GitHub</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- EDUCATION -->
-    <div class="section">
-      <div class="section-label">Education</div>
-      <div class="exp-list">
-        <div class="exp-item">
-          <div class="exp-dot"></div>
-          <div>
-            <div class="exp-role">BS/MS Computer Engineering — 4+1 Program</div>
-            <div class="exp-place">University of Massachusetts Lowell</div>
-            <div class="exp-date">Expected 2026</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CONTACT -->
-    <div class="section">
-      <div class="section-label">Contact</div>
-      <div class="contact-row">
-        <a class="btn" href="mailto:glujancenteno@gmail.com">glujancenteno@gmail.com</a>
-        <a class="btn" href="https://www.linkedin.com/in/gustavo-lujan-centeno-701136247/" target="_blank">LinkedIn</a>
-        <a class="btn" href="https://github.com/Gustavo160902" target="_blank">GitHub</a>
-      </div>
-    </div>
-
-    <div class="footer">Gustavo Lujan Centeno &nbsp;·&nbsp; gustavo160902.github.io</div>
-
   </div>
+
+  <div class="section fade d4">
+    <div class="section-label">About</div>
+    <p class="about-text">Senior in the 4+1 BS/MS program focusing on embedded systems, hardware development, and test engineering. I've worked with AVR/Arduino/Pico microcontrollers, FPGA design in VHDL, analog-to-digital circuits, and real-time systems. I like getting close to the hardware — debugging circuits, writing firmware, and understanding what's happening at the low level. Looking for internships in embedded, hardware, or test engineering.</p>
+  </div>
+
+  <div class="section fade d5">
+    <div class="section-label">Featured projects</div>
+    <div class="projects">
+      <div class="card">
+        <div class="card-top">
+          <span class="card-name">Fabrication Machine for Microelectrode Arrays</span>
+          <span class="card-year">2025–2026</span>
+        </div>
+        <p class="card-desc">Capstone project — automated MEA fabrication system with hardware–software integration, motion control, and embedded subsystem testing. Built with a multidisciplinary team.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">SolidWorks</span><span class="tag">Embedded C</span><span class="tag">Motion Control</span></div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-name">LoRa Mesh Network Optimization</span>
+          <span class="card-year">2026</span>
+        </div>
+        <p class="card-desc">Research project applying swarm intelligence routing to LoRa mesh networks. Built a Python simulation to compare latency, energy consumption, and delivery rate vs. Meshtastic's default flood routing.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">NetworkX</span><span class="tag">SimPy</span><span class="tag">LoRa</span><span class="tag">Meshtastic</span></div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-name">System-on-Chip FPGA Display</span>
+          <span class="card-year">2025</span>
+        </div>
+        <p class="card-desc">Designed a processor-based SoC on DE1-SoC using Platform Designer. Connected seven segment displays via top-level VHDL integration, pin assignments, and a Linux bitstream programming workflow.</p>
+        <div class="tags"><span class="tag">VHDL</span><span class="tag">FPGA</span><span class="tag">DE1-SoC</span><span class="tag">Quartus</span></div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-name">Sound-Activated Motor Controller</span>
+          <span class="card-year">2025</span>
+        </div>
+        <p class="card-desc">Arduino Mega system that maps microphone input to four PWM motor speed levels via an L293D driver. Includes direction toggle button, real-time clock, and LCD status display.</p>
+        <div class="tags"><span class="tag">C/C++</span><span class="tag">Arduino Mega</span><span class="tag">L293D</span><span class="tag">PWM</span><span class="tag">RTC</span></div>
+      </div>
+    </div>
+    <a class="all-link" href="projects.html">See all 9 projects <span class="arrow">→</span></a>
+  </div>
+
+  <div class="section fade d5">
+    <div class="section-label">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-list">
+          <span class="skill-item">C / C++</span>
+          <span class="skill-item">Python</span>
+          <span class="skill-item">VHDL</span>
+          <span class="skill-item">C#</span>
+          <span class="skill-item">MATLAB</span>
+          <span class="skill-item">Go</span>
+          <span class="skill-item">ARM Assembly</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Hardware</div>
+        <div class="skill-list">
+          <span class="skill-item">AVR / Arduino</span>
+          <span class="skill-item">Raspberry Pi Pico</span>
+          <span class="skill-item">FPGA (DE1-SoC)</span>
+          <span class="skill-item">Analog circuits</span>
+          <span class="skill-item">Op-amps</span>
+          <span class="skill-item">Soldering</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Tools</div>
+        <div class="skill-list">
+          <span class="skill-item">Analog Discovery</span>
+          <span class="skill-item">Multisim / LTSpice</span>
+          <span class="skill-item">Oscilloscope</span>
+          <span class="skill-item">Quartus</span>
+          <span class="skill-item">SolidWorks</span>
+          <span class="skill-item">Git / GitHub</span>
+          <span class="skill-item">Unity</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section fade d5">
+    <div class="section-label">Experience</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div>
+          <div class="timeline-role">COVID-19 Volunteer</div>
+          <div class="timeline-place">Framingham Town &nbsp;·&nbsp; Framingham, MA</div>
+          <div class="timeline-date">Jun 2021 – Nov 2021</div>
+          <div class="timeline-desc">Helped set up distribution stations for masks and sanitizers. Coordinated with local health staff to reach vulnerable community groups.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section fade d6">
+    <div class="section-label">Certifications</div>
+    <div class="certs">
+      <a class="cert-card" href="https://www.credly.com/badges/f13184f6-fa27-4a03-b629-58ef84b38b87" target="_blank">
+        <div class="cert-left">
+          <div class="cert-dot"></div>
+          <div>
+            <div class="cert-name">Machine Learning for Data Science Projects</div>
+            <div class="cert-org">IBM</div>
+          </div>
+        </div>
+        <div class="cert-date">Aug 2025</div>
+      </a>
+      <div class="cert-card">
+        <div class="cert-left">
+          <div class="cert-dot"></div>
+          <div>
+            <div class="cert-name">Methodological Principles for TEFL to Children &amp; Teenagers</div>
+            <div class="cert-org">Pontificia Universidad Católica del Perú</div>
+          </div>
+        </div>
+        <div class="cert-date">Jan 2022</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section fade d6">
+    <div class="section-label">Education</div>
+    <div class="edu-item">
+      <div class="edu-row">
+        <span class="edu-degree">BS Computer Engineering</span>
+        <span class="edu-date">Expected May 2026</span>
+      </div>
+      <div class="edu-school">University of Massachusetts Lowell</div>
+      <div style="margin-top: 10px;"></div>
+      <div class="edu-row">
+        <span class="edu-degree">MS Computer Engineering — 4+1 Program</span>
+        <span class="edu-date">Expected May 2027</span>
+      </div>
+      <div class="edu-school">University of Massachusetts Lowell</div>
+    </div>
+  </div>
+
+  <div class="section fade d7">
+    <div class="section-label">Contact</div>
+    <div class="contact-row">
+      <a class="btn primary" href="mailto:gustavo_lujancenteno@student.uml.edu">Email me</a>
+      <a class="btn btn-linkedin" href="https://www.linkedin.com/in/gustavo-lujan-centeno-701136247/" target="_blank">
+        <svg viewBox="0 0 24 24" fill="#b0afa9"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a class="btn btn-github" href="https://github.com/Gustavo160902" target="_blank">
+        <svg viewBox="0 0 24 24" fill="#b0afa9"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+
+  <div class="footer fade d7">Gustavo Lujan Centeno &nbsp;·&nbsp; gustavo160902.github.io</div>
+
+</div>
 </body>
 </html>
