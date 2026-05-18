@@ -41,10 +41,20 @@
 
     .project { border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 16px; }
     .project.wip { border-style: dashed; }
-    .project.linkable { cursor: pointer; transition: border-color 0.2s; text-decoration: none; color: inherit; display: block; }
-    .project.linkable:hover { border-color: var(--border-hover); }
 
-    /* Image gallery */
+    /* Clickable card wrapper — only for mesh */
+    .project-link-wrapper {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .project-link-wrapper:hover { border-color: var(--border-hover); }
+
     .project-images { display: grid; gap: 2px; background: var(--surface); }
     .project-images.single { grid-template-columns: 1fr; }
     .project-images.double { grid-template-columns: 1fr 1fr; }
@@ -57,14 +67,12 @@
       cursor: zoom-in;
       transition: opacity 0.2s;
     }
-    .project-images img:hover { opacity: 0.9; }
+    .project-images img:hover { opacity: 0.88; }
     .project-images.single img { height: 280px; }
 
-    /* Video */
     .project-video { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; }
     .project-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-    /* Card body */
     .project-body { padding: 1.4rem 1.6rem; }
     .project-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
     .project-name { font-size: 16px; font-weight: 500; }
@@ -82,8 +90,7 @@
     .tags { display: flex; gap: 6px; flex-wrap: wrap; }
     .tag { font-family: 'DM Mono', monospace; font-size: 10px; padding: 2px 7px; border: 0.5px solid var(--border); border-radius: 3px; color: var(--hint); }
 
-    .card-link { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: color 0.2s; }
-    .card-link:hover { color: #24292e; }
+    .card-link { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); display: inline-flex; align-items: center; gap: 4px; }
     .card-link svg { width: 11px; height: 11px; }
 
     /* Lightbox */
@@ -91,7 +98,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.88);
+      background: rgba(0,0,0,0.9);
       z-index: 1000;
       align-items: center;
       justify-content: center;
@@ -99,25 +106,8 @@
       cursor: zoom-out;
     }
     .lightbox.active { display: flex; }
-    .lightbox img {
-      max-width: 100%;
-      max-height: 90vh;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    }
-    .lightbox-close {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: rgba(255,255,255,0.6);
-      cursor: pointer;
-      background: none;
-      border: none;
-      letter-spacing: 0.05em;
-    }
+    .lightbox img { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); cursor: default; }
+    .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; font-family: 'DM Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.6); cursor: pointer; background: none; border: none; letter-spacing: 0.05em; }
     .lightbox-close:hover { color: #fff; }
 
     .footer { margin-top: 5rem; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); }
@@ -130,10 +120,9 @@
 </head>
 <body>
 
-<!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" onclick="closeLightbox()">close ✕</button>
-  <img id="lightbox-img" src="" alt="" />
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()" />
 </div>
 
 <div class="page">
@@ -142,209 +131,12 @@
   <h1 class="fade d1">All <strong>projects</strong></h1>
   <p class="sub fade d2">11 projects across embedded systems, hardware, FPGA, networking, and game dev.</p>
 
-  <!-- ── 2024 ── -->
-  <div class="year-block fade d2">
-    <div class="year-label">2024</div>
-
-    <div class="project">
-      <div class="project-images single">
-        <img src="images/voice-recorder.jpg" alt="Voice Message Recorder hardware" onclick="openLightbox(this)" />
-      </div>
-      <div class="project-body">
-        <div class="project-header">
-          <span class="project-name">Voice Message Recorder</span>
-          <div class="project-meta"><span class="project-year">Spring 2024</span></div>
-        </div>
-        <p class="project-desc">Standalone voice recorder built on Raspberry Pi Pico and programmed entirely in ARM Assembly. Records up to 3 seconds of audio via microphone through the ADC at 22,050 Hz, stores it in RAM, and plays it back through an LM386-amplified speaker via PWM output.</p>
-        <div class="project-highlights">
-          <div class="highlight">Written fully in ARM Assembly using the Pico SDK</div>
-          <div class="highlight">22,050 Hz sample rate with full RAM-based audio storage</div>
-          <div class="highlight">LM386 amplifier stage drives the speaker output</div>
-          <div class="highlight">3 LEDs for power, recording, and memory status</div>
-        </div>
-        <div class="project-footer">
-          <div class="tags"><span class="tag">ARM Assembly</span><span class="tag">Raspberry Pi Pico</span><span class="tag">PWM</span><span class="tag">LM386</span><span class="tag">ADC</span></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ── 2025 ── -->
-  <div class="year-block fade d2">
-    <div class="year-label">2025</div>
-
-    <!-- Wind Display -->
-    <div class="project">
-      <div class="project-images double">
-        <img src="images/wind-schematic.jpg" alt="Wind display Multisim schematic" onclick="openLightbox(this)" />
-        <img src="images/wind-breadboard.jpg" alt="Wind display breadboard" onclick="openLightbox(this)" />
-      </div>
-      <div class="project-video">
-        <iframe src="https://www.youtube.com/embed/D6vow6aWyrQ" allowfullscreen></iframe>
-      </div>
-      <div class="project-body">
-        <div class="project-header">
-          <span class="project-name">Wind-Activated Visual Display</span>
-          <div class="project-meta"><span class="project-year">Spring 2025</span></div>
-        </div>
-        <p class="project-desc">Analog circuit that detects wind intensity and activates LEDs and a buzzer at calibrated thresholds. Built and simulated in Multisim using LM358 op-amps as comparators. Designed, built, and benchmarked independently from schematic to working hardware.</p>
-        <div class="project-highlights">
-          <div class="highlight">LM358 op-amps configured as voltage comparators</div>
-          <div class="highlight">Multiple threshold levels trigger different LED patterns</div>
-          <div class="highlight">Buzzer alerts at high wind intensity</div>
-          <div class="highlight">Verified using Analog Discovery waveform analyzer</div>
-        </div>
-        <div class="project-footer">
-          <div class="tags"><span class="tag">Analog Circuits</span><span class="tag">Op-Amps</span><span class="tag">LM358</span><span class="tag">Multisim</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Cooperative Scheduler -->
-    <div class="project">
-      <div class="project-body">
-        <div class="project-header">
-          <span class="project-name">Cooperative Real-Time Scheduler</span>
-          <div class="project-meta"><span class="project-year">Fall 2025</span></div>
-        </div>
-        <p class="project-desc">Cooperative real-time task scheduler in C/C++ on an AVR microcontroller (Arduino Uno). Designed scheduling logic, timing counters, and task switching for 3 concurrent tasks of different CPU loads. Compared Round-Robin vs Priority scheduling fairness under stress.</p>
-        <div class="project-highlights">
-          <div class="highlight">3 task types: heavy (floating-point), medium (FIR filtering), light (bitwise)</div>
-          <div class="highlight">Measured latency, deadline misses, and CPU usage — exported to Excel</div>
-          <div class="highlight">Round-Robin breaks down under heavy load; Priority scheduling more stable</div>
-        </div>
-        <div class="project-footer">
-          <div class="tags"><span class="tag">C/C++</span><span class="tag">AVR</span><span class="tag">Arduino Uno</span><span class="tag">TaskScheduler</span><span class="tag">Real-Time Systems</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sound Motor -->
-    <div class="project">
-      <div class="project-body">
-        <div class="project-header">
-          <span class="project-name">Sound-Activated Motor Controller</span>
-          <div class="project-meta"><span class="project-year">Fall 2025</span></div>
-        </div>
-        <p class="project-desc">Arduino Mega 2560 system mapping microphone input to 4 PWM motor speed levels via an L293D driver. A pushbutton toggles direction; a DS1307 RTC and LCD show live time and motor status updated every second via timer interrupt.</p>
-        <div class="project-highlights">
-          <div class="highlight">4 PWM speed levels mapped from microphone sound thresholds</div>
-          <div class="highlight">L293D motor driver with pushbutton direction toggle</div>
-          <div class="highlight">Timer interrupt updates LCD display every second without blocking</div>
-        </div>
-        <div class="project-footer">
-          <div class="tags"><span class="tag">C/C++</span><span class="tag">Arduino Mega</span><span class="tag">L293D</span><span class="tag">PWM</span><span class="tag">RTC</span><span class="tag">LCD</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FPGA Fractal -->
-    <div class="project">
-      <div class="project-images double">
-        <img src="images/fractal-1.jpg" alt="Mandelbrot set rendered on FPGA" onclick="openLightbox(this)" />
-        <img src="images/fractal-2.jpg" alt="Julia set rendered on FPGA" onclick="openLightbox(this)" />
-      </div>
-      <div class="project-body">
-        <div class="project-header">
-          <span class="project-name">FPGA Fractal Generator</span>
-          <div class="project-meta"><span class="project-year">2025</span></div>
-        </div>
-        <p class="project-desc">Real-time fractal generator implemented in VHDL on an FPGA. Renders Mandelbrot and Julia sets directly to an external monitor via VGA output — demonstrating how hardware description languages can handle mathematically intensive graphics computation at the silicon level.</p>
-        <div class="project-highlights">
-          <div class="highlight">Mandelbrot and Julia sets rendered in real time</div>
-          <div class="highlight">VGA output to external monitor — fully hardware-driven</div>
-          <div class="highlight">Implemented entirely in VHDL</div>
-        </div>
-        <div class="project-footer">
-          <div class="tags"><span class="tag">VHDL</span><span class="tag">FPGA</span><span class="tag">VGA</span><span class="tag">Digital Design</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FPGA Temperature -->
-    <div class="project">
-      <div class="project-images single">
-        <img src="images/fpga-temp-1.jpg" alt="DE10-Lite showing temperature 3659" onclick="openLightbox(this)" />
-      </div>
-      <div class="project-body">
-        <div class="project-header">
-          <span class="project-name">FPGA Temperature Sensor — Clock Domain Crossing</span>
-          <div class="project-meta"><span class="project-year">Dec 2025</span></div>
-        </div>
-        <p class="project-desc">Advanced FPGA design on DE10-Lite that reads the on-chip temperature sensor and displays it on seven segment displays. The core challenge was safely crossing data between a 1 MHz ADC domain and a 50 MHz display domain using an async FIFO with Gray code synchronizers.</p>
-        <div class="project-highlights">
-          <div class="highlight">5-state FSM controls MAX10 ADC for continuous temperature sampling</div>
-          <div class="highlight">Async FIFO with dual-clock RAM bridges 1 MHz and 50 MHz domains</div>
-          <div class="highlight">Gray code + 2-stage synchronizers prevent metastability</div>
-          <div class="highlight">160 logic elements total — displayed temperature: 36.59°C</div>
-        </div>
-        <div class="project-footer">
-          <div class="tags"><span class="tag">VHDL</span><span class="tag">FPGA</span><span class="tag">DE10-Lite</span><span class="tag">Quartus</span><span class="tag">CDC</span><span class="tag">ADC</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SoC FPGA Display -->
-    <div class="project">
-      <div class="project-images single">
-        <img src="images/fpga-display-2.jpg" alt="DE1-SoC board showing 000032" onclick="openLightbox(this)" />
-      </div>
-      <div class="project-body">
-        <div class="project-header">
-          <span class="project-name">System-on-Chip FPGA Display</span>
-          <div class="project-meta"><span class="project-year">Dec 2025</span></div>
-        </div>
-        <p class="project-desc">Processor-based SoC on the DE1-SoC board using Platform Designer (Quartus). Built the internal processor system, exported conduit signals, and connected everything via top-level VHDL. Pin assignments done manually; programmed via Linux bitstream workflow with zero compilation errors.</p>
-        <div class="project-highlights">
-          <div class="highlight">Platform Designer builds and exports the processor subsystem</div>
-          <div class="highlight">Top-level VHDL connects generated system to physical board I/O</div>
-          <div class="highlight">Manual pin assignments for all seven segment display segments</div>
-        </div>
-        <div class="project-footer">
-          <div class="tags"><span class="tag">VHDL</span><span class="tag">FPGA</span><span class="tag">DE1-SoC</span><span class="tag">Quartus</span><span class="tag">Platform Designer</span></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ── 2025–2026 ── -->
-  <div class="year-block fade d3">
-    <div class="year-label">2025 – 2026</div>
-
-    <div class="project">
-      <div class="project-images single">
-        <img src="images/capstone-1.png" alt="MEA fabrication machine depositing material" onclick="openLightbox(this)" />
-      </div>
-      <div class="project-video">
-        <iframe src="https://www.youtube.com/embed/NJSMYduA_qo" allowfullscreen></iframe>
-      </div>
-      <div class="project-body">
-        <div class="project-header">
-          <span class="project-name">Fabrication Machine for Microelectrode Arrays</span>
-          <div class="project-meta"><span class="project-year">2025–2026</span></div>
-        </div>
-        <p class="project-desc">Capstone project — automated system for fabricating microelectrode arrays (MEAs) with a multidisciplinary engineering team. Contributed to hardware–software integration, motion control, and testing of embedded subsystems. Python for software control, SolidWorks for mechanical design.</p>
-        <div class="project-highlights">
-          <div class="highlight">Automated precision deposition for MEA fabrication</div>
-          <div class="highlight">Hardware–software integration across sensors and actuators</div>
-          <div class="highlight">Iterative calibration and debugging to improve automation accuracy</div>
-        </div>
-        <div class="project-footer">
-          <div class="tags"><span class="tag">Python</span><span class="tag">SolidWorks</span><span class="tag">Embedded C</span><span class="tag">Motion Control</span><span class="tag">Capstone</span></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
   <!-- ── 2026 ── -->
-  <div class="year-block fade d3">
+  <div class="year-block fade d2">
     <div class="year-label">2026</div>
 
-    <!-- Mesh Network — linkable to GitHub -->
-    <a class="project linkable" href="https://github.com/CharlamadaV2/nd_mini_research" target="_blank">
+    <!-- Mesh Network -->
+    <a class="project-link-wrapper" href="https://github.com/CharlamadaV2/nd_mini_research" target="_blank">
       <div class="project-images double">
         <img src="images/mesh-hardware.png" alt="LoRa RAK hardware nodes" onclick="openLightbox(this)" />
         <img src="images/mesh-3d.png" alt="3D node placement simulation GUI" onclick="openLightbox(this)" />
@@ -375,7 +167,209 @@
       </div>
     </a>
 
-    <!-- Horror Game -->
+  </div>
+
+  <!-- ── 2025–2026 ── -->
+  <div class="year-block fade d2">
+    <div class="year-label">2025 – 2026</div>
+
+    <div class="project">
+      <div class="project-images single">
+        <img src="images/capstone-1.png" alt="MEA fabrication machine" onclick="openLightbox(this)" />
+      </div>
+      <div class="project-video">
+        <iframe src="https://www.youtube.com/embed/NJSMYduA_qo" allowfullscreen></iframe>
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <span class="project-name">Fabrication Machine for Microelectrode Arrays</span>
+          <div class="project-meta"><span class="project-year">2025–2026</span></div>
+        </div>
+        <p class="project-desc">Capstone project — automated system for fabricating microelectrode arrays (MEAs) with a multidisciplinary engineering team. Contributed to hardware–software integration, motion control, and testing of embedded subsystems. Python for software control, SolidWorks for mechanical design.</p>
+        <div class="project-highlights">
+          <div class="highlight">Automated precision deposition for MEA fabrication</div>
+          <div class="highlight">Hardware–software integration across sensors and actuators</div>
+          <div class="highlight">Iterative calibration and debugging to improve automation accuracy</div>
+        </div>
+        <div class="project-footer">
+          <div class="tags"><span class="tag">Python</span><span class="tag">SolidWorks</span><span class="tag">Embedded C</span><span class="tag">Motion Control</span><span class="tag">Capstone</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── 2025 ── -->
+  <div class="year-block fade d3">
+    <div class="year-label">2025</div>
+
+    <!-- SoC FPGA Display — has image, Dec 2025 -->
+    <div class="project">
+      <div class="project-images single">
+        <img src="images/fpga-display-2.jpg" alt="DE1-SoC board showing 000032" onclick="openLightbox(this)" />
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <span class="project-name">System-on-Chip FPGA Display</span>
+          <div class="project-meta"><span class="project-year">Dec 2025</span></div>
+        </div>
+        <p class="project-desc">Processor-based SoC on the DE1-SoC board using Platform Designer (Quartus). Built the internal processor system, exported conduit signals, and connected everything via top-level VHDL. Pin assignments done manually; programmed via Linux bitstream workflow with zero compilation errors.</p>
+        <div class="project-highlights">
+          <div class="highlight">Platform Designer builds and exports the processor subsystem</div>
+          <div class="highlight">Top-level VHDL connects generated system to physical board I/O</div>
+          <div class="highlight">Manual pin assignments for all seven segment display segments</div>
+        </div>
+        <div class="project-footer">
+          <div class="tags"><span class="tag">VHDL</span><span class="tag">FPGA</span><span class="tag">DE1-SoC</span><span class="tag">Quartus</span><span class="tag">Platform Designer</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FPGA Temperature — has image, Dec 2025 -->
+    <div class="project">
+      <div class="project-images single">
+        <img src="images/fpga-temp-1.jpg" alt="DE10-Lite showing temperature 3659" onclick="openLightbox(this)" />
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <span class="project-name">FPGA Temperature Sensor — Clock Domain Crossing</span>
+          <div class="project-meta"><span class="project-year">Dec 2025</span></div>
+        </div>
+        <p class="project-desc">Advanced FPGA design on DE10-Lite reading the on-chip temperature sensor and displaying it on seven segment displays. Data safely crosses between a 1 MHz ADC domain and 50 MHz display domain using an async FIFO with Gray code synchronizers to prevent metastability.</p>
+        <div class="project-highlights">
+          <div class="highlight">5-state FSM controls MAX10 ADC for continuous temperature sampling</div>
+          <div class="highlight">Async FIFO with dual-clock RAM bridges 1 MHz and 50 MHz domains</div>
+          <div class="highlight">Gray code + 2-stage synchronizers prevent metastability</div>
+          <div class="highlight">160 logic elements total — displayed temperature: 36.59°C</div>
+        </div>
+        <div class="project-footer">
+          <div class="tags"><span class="tag">VHDL</span><span class="tag">FPGA</span><span class="tag">DE10-Lite</span><span class="tag">Quartus</span><span class="tag">CDC</span><span class="tag">ADC</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FPGA Fractal — has images -->
+    <div class="project">
+      <div class="project-images double">
+        <img src="images/fractal-1.jpg" alt="Mandelbrot set rendered on FPGA" onclick="openLightbox(this)" />
+        <img src="images/fractal-2.jpg" alt="Julia set rendered on FPGA" onclick="openLightbox(this)" />
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <span class="project-name">FPGA Fractal Generator</span>
+          <div class="project-meta"><span class="project-year">2025</span></div>
+        </div>
+        <p class="project-desc">Real-time fractal generator implemented in VHDL on an FPGA. Renders Mandelbrot and Julia sets directly to an external monitor via VGA output — demonstrating how hardware description languages can handle mathematically intensive graphics at the silicon level.</p>
+        <div class="project-highlights">
+          <div class="highlight">Mandelbrot and Julia sets rendered in real time on FPGA hardware</div>
+          <div class="highlight">VGA output to external monitor — fully hardware-driven</div>
+          <div class="highlight">Implemented entirely in VHDL</div>
+        </div>
+        <div class="project-footer">
+          <div class="tags"><span class="tag">VHDL</span><span class="tag">FPGA</span><span class="tag">VGA</span><span class="tag">Digital Design</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wind Display — has images + video -->
+    <div class="project">
+      <div class="project-images double">
+        <img src="images/wind-schematic.jpg" alt="Wind display Multisim schematic" onclick="openLightbox(this)" />
+        <img src="images/wind-breadboard.jpg" alt="Wind display breadboard" onclick="openLightbox(this)" />
+      </div>
+      <div class="project-video">
+        <iframe src="https://www.youtube.com/embed/D6vow6aWyrQ" allowfullscreen></iframe>
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <span class="project-name">Wind-Activated Visual Display</span>
+          <div class="project-meta"><span class="project-year">Spring 2025</span></div>
+        </div>
+        <p class="project-desc">Analog circuit detecting wind intensity and activating LEDs and a buzzer at calibrated thresholds. Built and simulated in Multisim using LM358 op-amps as comparators. Designed, built, and benchmarked independently from schematic to working hardware.</p>
+        <div class="project-highlights">
+          <div class="highlight">LM358 op-amps configured as voltage comparators</div>
+          <div class="highlight">Multiple threshold levels trigger different LED patterns</div>
+          <div class="highlight">Buzzer alerts at high wind intensity</div>
+          <div class="highlight">Verified using Analog Discovery waveform analyzer</div>
+        </div>
+        <div class="project-footer">
+          <div class="tags"><span class="tag">Analog Circuits</span><span class="tag">Op-Amps</span><span class="tag">LM358</span><span class="tag">Multisim</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sound Motor — no image -->
+    <div class="project">
+      <div class="project-body">
+        <div class="project-header">
+          <span class="project-name">Sound-Activated Motor Controller</span>
+          <div class="project-meta"><span class="project-year">Fall 2025</span></div>
+        </div>
+        <p class="project-desc">Arduino Mega 2560 system mapping microphone input to 4 PWM motor speed levels via an L293D driver. A pushbutton toggles direction; a DS1307 RTC and LCD show live time and motor status updated every second via timer interrupt.</p>
+        <div class="project-highlights">
+          <div class="highlight">4 PWM speed levels mapped from microphone sound thresholds</div>
+          <div class="highlight">L293D motor driver with pushbutton direction toggle</div>
+          <div class="highlight">Timer interrupt updates LCD display every second without blocking</div>
+        </div>
+        <div class="project-footer">
+          <div class="tags"><span class="tag">C/C++</span><span class="tag">Arduino Mega</span><span class="tag">L293D</span><span class="tag">PWM</span><span class="tag">RTC</span><span class="tag">LCD</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cooperative Scheduler — no image -->
+    <div class="project">
+      <div class="project-body">
+        <div class="project-header">
+          <span class="project-name">Cooperative Real-Time Scheduler</span>
+          <div class="project-meta"><span class="project-year">Fall 2025</span></div>
+        </div>
+        <p class="project-desc">Cooperative real-time task scheduler in C/C++ on an AVR microcontroller (Arduino Uno). Designed scheduling logic, timing counters, and task switching for 3 concurrent tasks. Compared Round-Robin vs Priority scheduling fairness and latency under stress.</p>
+        <div class="project-highlights">
+          <div class="highlight">3 task types: heavy (floating-point), medium (FIR filtering), light (bitwise)</div>
+          <div class="highlight">Measured latency, deadline misses, and CPU usage — exported to Excel</div>
+          <div class="highlight">Round-Robin breaks down under heavy load; Priority scheduling more stable</div>
+        </div>
+        <div class="project-footer">
+          <div class="tags"><span class="tag">C/C++</span><span class="tag">AVR</span><span class="tag">Arduino Uno</span><span class="tag">TaskScheduler</span><span class="tag">Real-Time Systems</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── 2024 ── -->
+  <div class="year-block fade d3">
+    <div class="year-label">2024</div>
+
+    <div class="project">
+      <div class="project-images single">
+        <img src="images/voice-recorder.jpg" alt="Voice Message Recorder hardware" onclick="openLightbox(this)" />
+      </div>
+      <div class="project-body">
+        <div class="project-header">
+          <span class="project-name">Voice Message Recorder</span>
+          <div class="project-meta"><span class="project-year">Spring 2024</span></div>
+        </div>
+        <p class="project-desc">Standalone voice recorder built on Raspberry Pi Pico and programmed entirely in ARM Assembly. Records up to 3 seconds of audio via microphone at 22,050 Hz, stores in RAM, and plays back through an LM386-amplified speaker via PWM output.</p>
+        <div class="project-highlights">
+          <div class="highlight">Written fully in ARM Assembly using the Pico SDK</div>
+          <div class="highlight">22,050 Hz sample rate with full RAM-based audio storage</div>
+          <div class="highlight">LM386 amplifier stage drives the speaker output</div>
+          <div class="highlight">3 LEDs for power, recording, and memory status</div>
+        </div>
+        <div class="project-footer">
+          <div class="tags"><span class="tag">ARM Assembly</span><span class="tag">Raspberry Pi Pico</span><span class="tag">PWM</span><span class="tag">LM386</span><span class="tag">ADC</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Personal ── -->
+  <div class="year-block fade d3">
+    <div class="year-label">Personal</div>
+
     <div class="project wip">
       <div class="project-body">
         <div class="project-header">
@@ -400,6 +394,7 @@
 
 <script>
   function openLightbox(img) {
+    event.preventDefault();
     event.stopPropagation();
     document.getElementById('lightbox-img').src = img.src;
     document.getElementById('lightbox-img').alt = img.alt;
@@ -413,9 +408,7 @@
   }
 
   document.getElementById('lightbox').addEventListener('click', function(e) {
-    if (e.target !== document.getElementById('lightbox-img')) {
-      closeLightbox();
-    }
+    if (e.target === this) closeLightbox();
   });
 
   document.addEventListener('keydown', function(e) {
