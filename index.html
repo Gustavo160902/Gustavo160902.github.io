@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --bg: #ffffff;
       --surface: #f8f7f4;
@@ -18,78 +17,46 @@
       --border: rgba(0,0,0,0.08);
       --border-hover: rgba(0,0,0,0.18);
     }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 16px;
-      line-height: 1.7;
-      font-weight: 300;
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #141413;
+        --surface: #1e1e1c;
+        --text: #efefec;
+        --muted: #9a9a96;
+        --hint: #5e5e5b;
+        --border: rgba(255,255,255,0.08);
+        --border-hover: rgba(255,255,255,0.18);
+      }
     }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; font-weight: 300; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
     .fade { opacity: 0; animation: fadeUp 0.55s ease forwards; }
-    .d1 { animation-delay: 0.05s; }
-    .d2 { animation-delay: 0.15s; }
-    .d3 { animation-delay: 0.25s; }
-    .d4 { animation-delay: 0.35s; }
-    .d5 { animation-delay: 0.45s; }
-    .d6 { animation-delay: 0.55s; }
-    .d7 { animation-delay: 0.65s; }
-
+    .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; } .d3 { animation-delay: 0.25s; }
+    .d4 { animation-delay: 0.35s; } .d5 { animation-delay: 0.45s; } .d6 { animation-delay: 0.55s; } .d7 { animation-delay: 0.65s; }
     .page { max-width: 700px; margin: 0 auto; padding: 5rem 2rem 7rem; }
-
     .hero { margin-bottom: 4rem; }
     .greeting { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--hint); letter-spacing: 0.08em; margin-bottom: 1rem; }
     h1 { font-size: 2.4rem; font-weight: 300; letter-spacing: -0.8px; line-height: 1.15; margin-bottom: 0.75rem; }
     h1 strong { font-weight: 500; }
-    .tagline { font-size: 15px; color: var(--muted); margin-bottom: 2rem; max-width: 480px; line-height: 1.7; }
+    .tagline { font-size: 15px; color: var(--muted); margin-bottom: 1.5rem; max-width: 480px; line-height: 1.7; }
+    .now-badge { display: inline-flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); background: var(--surface); border: 0.5px solid var(--border); border-radius: 20px; padding: 3px 10px; margin-bottom: 1.5rem; }
+    .now-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--hint); animation: pulse 2s infinite; flex-shrink: 0; }
+    .now-dot.active { background: #4caf50; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     .hero-links { display: flex; gap: 10px; flex-wrap: wrap; }
-
-    .btn {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      padding: 8px 18px;
-      border: 0.5px solid var(--border-hover);
-      border-radius: 4px;
-      color: var(--muted);
-      background: transparent;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
+    .btn { font-family: 'DM Mono', monospace; font-size: 12px; padding: 8px 18px; border: 0.5px solid var(--border-hover); border-radius: 4px; color: var(--muted); background: transparent; text-decoration: none; cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s; display: inline-flex; align-items: center; gap: 7px; }
     .btn svg { width: 13px; height: 13px; flex-shrink: 0; transition: fill 0.2s; }
     .btn:hover { background: var(--surface); color: var(--text); }
     .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
     .btn.primary:hover { opacity: 0.8; }
     .btn-linkedin:hover { background: #e8f0fe; color: #0a66c2; border-color: #0a66c2; }
     .btn-linkedin:hover svg { fill: #0a66c2; }
-    .btn-github:hover { background: #f0f0ee; color: #24292e; border-color: #24292e; }
-    .btn-github:hover svg { fill: #24292e; }
-
+    .btn-github:hover { background: var(--surface); color: var(--text); border-color: var(--border-hover); }
+    .btn-github:hover svg { fill: var(--text); }
     .section { margin-bottom: 4rem; }
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      color: var(--hint);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 1.5rem;
-    }
+    .section-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); letter-spacing: 0.1em; text-transform: uppercase; display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
     .section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
-
     .about-text { font-size: 15px; line-height: 1.9; color: var(--muted); max-width: 560px; }
-
     .projects { display: flex; flex-direction: column; gap: 1px; border: 0.5px solid var(--border); border-radius: 14px; overflow: hidden; }
     .card { padding: 1.4rem 1.6rem; background: var(--bg); border-bottom: 0.5px solid var(--border); transition: background 0.2s; display: block; }
     .card:last-child { border-bottom: none; }
@@ -102,23 +69,19 @@
     .tags { display: flex; gap: 6px; flex-wrap: wrap; }
     .tag { font-family: 'DM Mono', monospace; font-size: 10px; padding: 2px 7px; border: 0.5px solid var(--border); border-radius: 3px; color: var(--hint); }
     .card-link { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: color 0.2s; flex-shrink: 0; }
-    .card-link:hover { color: #24292e; }
+    .card-link:hover { color: var(--text); }
     .card-link svg { width: 11px; height: 11px; }
-
     .all-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 1rem; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .all-link:hover { color: var(--text); }
     .all-link .arrow { transition: transform 0.2s; display: inline-block; }
     .all-link:hover .arrow { transform: translateX(4px); }
-
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
     .skill-group { padding: 1rem 1.1rem; border: 0.5px solid var(--border); border-radius: 10px; }
     .skill-group-title { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--hint); margin-bottom: 8px; }
     .skill-list { display: flex; flex-direction: column; gap: 4px; }
     .skill-item { font-size: 13px; color: var(--muted); }
-
     .lang-row { display: flex; gap: 8px; flex-wrap: wrap; }
     .lang-pill { font-size: 13px; color: var(--muted); padding: 4px 12px; border: 0.5px solid var(--border); border-radius: 20px; }
-
     .timeline { display: flex; flex-direction: column; }
     .timeline-item { display: flex; gap: 1.2rem; padding-bottom: 1.5rem; }
     .timeline-item:last-child { padding-bottom: 0; }
@@ -130,7 +93,6 @@
     .timeline-place { font-size: 13px; color: var(--muted); }
     .timeline-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); margin-top: 2px; margin-bottom: 6px; }
     .timeline-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
-
     .certs { display: flex; flex-direction: column; gap: 10px; }
     .cert-card { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0.9rem 1.1rem; border: 0.5px solid var(--border); border-radius: 10px; text-decoration: none; color: inherit; transition: background 0.2s, border-color 0.2s; }
     .cert-card:hover { background: var(--surface); border-color: var(--border-hover); }
@@ -139,27 +101,29 @@
     .cert-name { font-size: 14px; font-weight: 500; }
     .cert-org { font-size: 12px; color: var(--muted); margin-top: 1px; }
     .cert-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); flex-shrink: 0; }
-
     .edu-item { display: flex; flex-direction: column; gap: 6px; }
     .edu-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
     .edu-degree { font-size: 14px; font-weight: 500; }
     .edu-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); }
     .edu-school { font-size: 13px; color: var(--muted); }
-
+    .edu-diploma { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; transition: color 0.2s; }
+    .edu-diploma:hover { color: var(--text); }
     .contact-row { display: flex; gap: 10px; flex-wrap: wrap; }
     .footer { margin-top: 5rem; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); }
   </style>
 </head>
 <body>
 <div class="page">
-
   <div class="hero">
-    <div class="greeting fade d1">hey, welcome</div>
+    <div class="greeting fade d1" id="greeting">hey, welcome</div>
     <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem" class="fade d2">
       <img src="images/profile_1.jpg" alt="Gustavo Lujan Centeno" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:0.5px solid rgba(0,0,0,0.1);" />
       <h1 style="margin-bottom:0">I'm <strong>Gustavo</strong><br>Lujan Centeno</h1>
     </div>
     <p class="tagline fade d3">Computer Engineering graduate from UMass Lowell — focused on embedded systems, hardware development, and real-time applications.</p>
+    <div class="fade d3">
+      <div class="now-badge"><span class="now-dot" id="now-dot"></span><span id="now-status">loading...</span></div>
+    </div>
     <div class="hero-links fade d4">
       <a class="btn primary" href="resume.pdf" target="_blank">Resume</a>
       <a class="btn" href="mailto:gustavo_lujancenteno@student.uml.edu">Email</a>
@@ -182,7 +146,6 @@
   <div class="section fade d5">
     <div class="section-label">Featured projects</div>
     <div class="projects">
-
       <div class="card">
         <div class="card-top">
           <span class="card-name">Fabrication Machine for Microelectrode Arrays</span>
@@ -193,13 +156,12 @@
           <div class="tags"><span class="tag">Python</span><span class="tag">SolidWorks</span><span class="tag">Embedded C</span><span class="tag">Motion Control</span></div>
         </div>
       </div>
-
       <div class="card">
         <div class="card-top">
           <span class="card-name">LoRa Mesh Network Optimization</span>
           <span class="card-year">2026</span>
         </div>
-        <p class="card-desc">Research project applying swarm intelligence routing to LoRa mesh networks. Built a Python simulation across 5–100 nodes comparing end-to-end latency, energy consumption, and delivery rate against Meshtastic's default flood routing — targeting 20% latency and 15% energy reduction.</p>
+        <p class="card-desc">Research project applying swarm intelligence routing to LoRa mesh networks. Built a Python simulation across 5–100 nodes comparing end-to-end latency, energy consumption, and delivery rate against Meshtastic's default flood routing.</p>
         <div class="card-footer">
           <div class="tags"><span class="tag">Python</span><span class="tag">NetworkX</span><span class="tag">SimPy</span><span class="tag">LoRa</span></div>
           <a class="card-link" href="https://github.com/CharlamadaV2/nd_mini_research" target="_blank">
@@ -208,7 +170,6 @@
           </a>
         </div>
       </div>
-
       <div class="card">
         <div class="card-top">
           <span class="card-name">System-on-Chip FPGA Display</span>
@@ -219,7 +180,6 @@
           <div class="tags"><span class="tag">VHDL</span><span class="tag">FPGA</span><span class="tag">DE1-SoC</span><span class="tag">Quartus</span></div>
         </div>
       </div>
-
       <div class="card">
         <div class="card-top">
           <span class="card-name">Sound-Activated Motor Controller</span>
@@ -230,9 +190,8 @@
           <div class="tags"><span class="tag">C/C++</span><span class="tag">Arduino Mega</span><span class="tag">L293D</span><span class="tag">PWM</span><span class="tag">RTC</span></div>
         </div>
       </div>
-
     </div>
-    <a class="all-link" href="projects.html">Explore all projects → <span class="arrow">→</span></a>
+    <a class="all-link" href="projects.html">Explore all projects <span class="arrow">→</span></a>
   </div>
 
   <div class="section fade d5">
@@ -294,10 +253,10 @@
           <div class="timeline-line"></div>
         </div>
         <div>
-          <div class="timeline-role">COVID-19 Volunteer</div>
-          <div class="timeline-place">Framingham Town &nbsp;·&nbsp; Framingham, MA</div>
-          <div class="timeline-date">Jun 2021 – Nov 2021</div>
-          <div class="timeline-desc">Set up distribution stations for masks and sanitizers. Coordinated with local health staff to reach vulnerable community groups across 5+ months of weekly events.</div>
+          <div class="timeline-role">Graduate Research Assistant</div>
+          <div class="timeline-place">UMass Lowell &nbsp;·&nbsp; Electrical & Computer Engineering</div>
+          <div class="timeline-date">June 2026 – Present</div>
+          <div class="timeline-desc">Conducting research under Prof. Seung Woo Son on porting a netlist fault injection framework to AWS EC2 FPGA (F2) instances. Working with Vivado/Vitis toolchains, cloud FPGA platforms, and hardware-software integration across Xilinx architectures.</div>
         </div>
       </div>
     </div>
@@ -316,16 +275,6 @@
         </div>
         <div class="cert-date">Aug 2025</div>
       </a>
-      <div class="cert-card">
-        <div class="cert-left">
-          <div class="cert-dot"></div>
-          <div>
-            <div class="cert-name">Methodological Principles for TEFL to Children &amp; Teenagers</div>
-            <div class="cert-org">Pontificia Universidad Católica del Perú</div>
-          </div>
-        </div>
-        <div class="cert-date">Jan 2022</div>
-      </div>
     </div>
   </div>
 
@@ -337,7 +286,11 @@
         <span class="edu-date">May 2026</span>
       </div>
       <div class="edu-school">University of Massachusetts Lowell</div>
-      <div style="margin-top: 10px;"></div>
+      <a class="edu-diploma" href="images/Diploma_Gustavo.pdf" target="_blank">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        View diploma
+      </a>
+      <div style="margin-top: 12px;"></div>
       <div class="edu-row">
         <span class="edu-degree">MS Computer Engineering</span>
         <span class="edu-date">in progress</span>
@@ -363,7 +316,28 @@
   </div>
 
   <div class="footer fade d7">Gustavo Lujan Centeno &nbsp;·&nbsp; gustavo160902.github.io</div>
-
 </div>
+<script>
+  const now = new Date();
+  const hour = now.getHours();
+  const day = now.getDay();
+  let greeting, status, active = false;
+  if (day === 6) {
+    greeting = "hey, welcome";
+    status = "not around today, check back tomorrow";
+  } else if (day === 0) {
+    if (hour >= 12 && hour < 16) { greeting = "hey, welcome"; status = "free and reachable today"; active = true; }
+    else { greeting = "hey, welcome"; status = "not around right now, might be later"; }
+  } else {
+    if (hour >= 0 && hour < 7) { greeting = "hey, welcome"; status = "sleeping — check back in the morning"; }
+    else if (hour >= 7 && hour < 8) { greeting = "good morning"; status = "checking emails"; active = true; }
+    else if (hour >= 8 && hour < 15) { greeting = "hey, welcome"; status = "reading docs or working on research"; active = true; }
+    else if (hour >= 15 && hour < 17) { greeting = "hey, welcome"; status = "stepping away for a bit"; }
+    else { greeting = "hey, welcome"; status = "available — feel free to reach out"; active = true; }
+  }
+  document.getElementById('greeting').textContent = greeting;
+  document.getElementById('now-status').textContent = status;
+  if (active) document.getElementById('now-dot').classList.add('active');
+</script>
 </body>
 </html>
