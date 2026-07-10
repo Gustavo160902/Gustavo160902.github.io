@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --bg: #ffffff;
       --surface: #f8f7f4;
@@ -19,123 +18,77 @@
       --border-hover: rgba(0,0,0,0.18);
       --radius: 14px;
     }
-
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #141413;
+        --surface: #1e1e1c;
+        --text: #efefec;
+        --muted: #9a9a96;
+        --hint: #5e5e5b;
+        --border: rgba(255,255,255,0.08);
+        --border-hover: rgba(255,255,255,0.18);
+      }
+    }
     body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; font-weight: 300; }
-
     @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
     .fade { opacity: 0; animation: fadeUp 0.5s ease forwards; }
     .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.12s; } .d3 { animation-delay: 0.2s; }
-
     .page { max-width: 740px; margin: 0 auto; padding: 4rem 2rem 7rem; }
-
     .back { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--hint); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 2.5rem; transition: color 0.2s; }
     .back:hover { color: var(--text); }
     .back::before { content: '←'; }
-
     h1 { font-size: 1.8rem; font-weight: 300; letter-spacing: -0.5px; margin-bottom: 0.4rem; }
     h1 strong { font-weight: 500; }
     .sub { font-size: 14px; color: var(--muted); margin-bottom: 3rem; }
-
     .year-block { margin-bottom: 3rem; }
     .year-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); letter-spacing: 0.08em; margin-bottom: 12px; }
-
     .project { border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 16px; }
     .project.wip { border-style: dashed; }
-
-    /* Clickable card wrapper — only for mesh */
-    .project-link-wrapper {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      margin-bottom: 16px;
-      transition: border-color 0.2s;
-    }
+    .project-link-wrapper { display: block; text-decoration: none; color: inherit; border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 16px; transition: border-color 0.2s; }
     .project-link-wrapper:hover { border-color: var(--border-hover); }
-
     .project-images { display: grid; gap: 2px; background: var(--surface); }
     .project-images.single { grid-template-columns: 1fr; }
     .project-images.double { grid-template-columns: 1fr 1fr; }
-    .project-images img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      cursor: zoom-in;
-      transition: opacity 0.2s;
-    }
+    .project-images img { width: 100%; height: 220px; object-fit: cover; object-position: center; display: block; cursor: zoom-in; transition: opacity 0.2s; }
     .project-images img:hover { opacity: 0.88; }
     .project-images.single img { height: 280px; }
-
     .project-video { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; }
     .project-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
     .project-body { padding: 1.4rem 1.6rem; }
     .project-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
     .project-name { font-size: 16px; font-weight: 500; }
     .project-meta { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
     .project-year { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); }
     .wip-badge { font-family: 'DM Mono', monospace; font-size: 10px; padding: 2px 8px; border: 0.5px solid var(--border-hover); border-radius: 20px; color: var(--hint); }
-
     .project-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
-
     .project-highlights { margin-bottom: 12px; }
     .highlight { font-size: 13px; color: var(--muted); padding: 3px 0; display: flex; gap: 8px; }
     .highlight::before { content: '·'; color: var(--hint); flex-shrink: 0; }
-
     .project-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
     .tags { display: flex; gap: 6px; flex-wrap: wrap; }
     .tag { font-family: 'DM Mono', monospace; font-size: 10px; padding: 2px 7px; border: 0.5px solid var(--border); border-radius: 3px; color: var(--hint); }
-
     .card-link { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); display: inline-flex; align-items: center; gap: 4px; }
     .card-link svg { width: 11px; height: 11px; }
-
-    /* Lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.9);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      cursor: zoom-out;
-    }
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; padding: 2rem; cursor: zoom-out; }
     .lightbox.active { display: flex; }
     .lightbox img { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); cursor: default; }
     .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; font-family: 'DM Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.6); cursor: pointer; background: none; border: none; letter-spacing: 0.05em; }
     .lightbox-close:hover { color: #fff; }
-
     .footer { margin-top: 5rem; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); }
-
-    @media (max-width: 500px) {
-      .project-images.double { grid-template-columns: 1fr; }
-      .project-images img { height: 180px; }
-    }
+    @media (max-width: 500px) { .project-images.double { grid-template-columns: 1fr; } .project-images img { height: 180px; } }
   </style>
 </head>
 <body>
-
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" onclick="closeLightbox()">close ✕</button>
   <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()" />
 </div>
-
 <div class="page">
-
   <a class="back fade d1" href="index.html">Back to home</a>
   <h1 class="fade d1">All <strong>projects</strong></h1>
   <p class="sub fade d2">11 projects across embedded systems, hardware, FPGA, networking, and game dev.</p>
-
-  <!-- ── 2026 ── -->
   <div class="year-block fade d2">
     <div class="year-label">2026</div>
-
-    <!-- Mesh Network -->
     <a class="project-link-wrapper" href="https://github.com/CharlamadaV2/nd_mini_research" target="_blank">
       <div class="project-images double">
         <img src="images/mesh-hardware.png" alt="LoRa RAK hardware nodes" onclick="openLightbox(this)" />
@@ -166,13 +119,9 @@
         </div>
       </div>
     </a>
-
   </div>
-
-  <!-- ── 2025–2026 ── -->
   <div class="year-block fade d2">
     <div class="year-label">2025 – 2026</div>
-
     <div class="project">
       <div class="project-images single">
         <img src="images/capstone-1.png" alt="MEA fabrication machine" onclick="openLightbox(this)" />
@@ -196,14 +145,9 @@
         </div>
       </div>
     </div>
-
   </div>
-
-  <!-- ── 2025 ── -->
   <div class="year-block fade d3">
     <div class="year-label">2025</div>
-
-    <!-- SoC FPGA Display — has image, Dec 2025 -->
     <div class="project">
       <div class="project-images single">
         <img src="images/fpga-display-2.jpg" alt="DE1-SoC board showing 000032" onclick="openLightbox(this)" />
@@ -224,8 +168,6 @@
         </div>
       </div>
     </div>
-
-    <!-- FPGA Temperature — has image, Dec 2025 -->
     <div class="project">
       <div class="project-images single">
         <img src="images/fpga-temp-1.jpg" alt="DE10-Lite showing temperature 3659" onclick="openLightbox(this)" />
@@ -247,8 +189,6 @@
         </div>
       </div>
     </div>
-
-    <!-- FPGA Fractal — has images -->
     <div class="project">
       <div class="project-images double">
         <img src="images/fractal-1.jpg" alt="Mandelbrot set rendered on FPGA" onclick="openLightbox(this)" />
@@ -259,7 +199,7 @@
           <span class="project-name">FPGA Fractal Generator</span>
           <div class="project-meta"><span class="project-year">2025</span></div>
         </div>
-        <p class="project-desc">Real-time fractal generator implemented in VHDL on an FPGA. Renders Mandelbrot and Julia sets directly to an external monitor via VGA output — demonstrating how hardware description languages can handle mathematically intensive graphics at the silicon level.</p>
+        <p class="project-desc">Real-time fractal generator implemented in VHDL on an FPGA. Renders Mandelbrot and Julia sets directly to an external monitor via VGA output.</p>
         <div class="project-highlights">
           <div class="highlight">Mandelbrot and Julia sets rendered in real time on FPGA hardware</div>
           <div class="highlight">VGA output to external monitor — fully hardware-driven</div>
@@ -270,8 +210,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Wind Display — has images + video -->
     <div class="project">
       <div class="project-images double">
         <img src="images/wind-schematic.jpg" alt="Wind display Multisim schematic" onclick="openLightbox(this)" />
@@ -285,11 +223,10 @@
           <span class="project-name">Wind-Activated Visual Display</span>
           <div class="project-meta"><span class="project-year">Spring 2025</span></div>
         </div>
-        <p class="project-desc">Analog circuit detecting wind intensity and activating LEDs and a buzzer at calibrated thresholds. Built and simulated in Multisim using LM358 op-amps as comparators. Designed, built, and benchmarked independently from schematic to working hardware.</p>
+        <p class="project-desc">Analog circuit detecting wind intensity and activating LEDs and a buzzer at calibrated thresholds. Built and simulated in Multisim using LM358 op-amps as comparators.</p>
         <div class="project-highlights">
           <div class="highlight">LM358 op-amps configured as voltage comparators</div>
           <div class="highlight">Multiple threshold levels trigger different LED patterns</div>
-          <div class="highlight">Buzzer alerts at high wind intensity</div>
           <div class="highlight">Verified using Analog Discovery waveform analyzer</div>
         </div>
         <div class="project-footer">
@@ -297,8 +234,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Sound Motor — no image -->
     <div class="project">
       <div class="project-body">
         <div class="project-header">
@@ -316,8 +251,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Cooperative Scheduler — no image -->
     <div class="project">
       <div class="project-body">
         <div class="project-header">
@@ -335,13 +268,9 @@
         </div>
       </div>
     </div>
-
   </div>
-
-  <!-- ── 2024 ── -->
   <div class="year-block fade d3">
     <div class="year-label">2024</div>
-
     <div class="project">
       <div class="project-images single">
         <img src="images/voice-recorder.jpg" alt="Voice Message Recorder hardware" onclick="openLightbox(this)" />
@@ -363,13 +292,9 @@
         </div>
       </div>
     </div>
-
   </div>
-
-  <!-- ── Personal ── -->
   <div class="year-block fade d3">
     <div class="year-label">Personal</div>
-
     <div class="project wip">
       <div class="project-body">
         <div class="project-header">
@@ -385,13 +310,9 @@
         </div>
       </div>
     </div>
-
   </div>
-
   <div class="footer">Gustavo Lujan Centeno &nbsp;·&nbsp; gustavo160902.github.io</div>
-
 </div>
-
 <script>
   function openLightbox(img) {
     event.preventDefault();
@@ -401,20 +322,16 @@
     document.getElementById('lightbox').classList.add('active');
     document.body.style.overflow = 'hidden';
   }
-
   function closeLightbox() {
     document.getElementById('lightbox').classList.remove('active');
     document.body.style.overflow = '';
   }
-
   document.getElementById('lightbox').addEventListener('click', function(e) {
     if (e.target === this) closeLightbox();
   });
-
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeLightbox();
   });
 </script>
-
 </body>
 </html>
